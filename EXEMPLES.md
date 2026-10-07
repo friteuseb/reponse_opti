@@ -1,6 +1,6 @@
 # Exemples avant / après
 
-Exemples rédigés à la main pour illustrer chaque règle. Pour des réponses réelles de modèle, voir la [page de démo](https://friteuseb.github.io/reponse_opti/demo/) et le dossier [`demo/reponses/`](demo/reponses/).
+Exemples rédigés à la main pour illustrer chaque règle. Pour des réponses réelles de modèle, voir la [page de démo](https://cyril-wolfangel.com/reponse_opti/demo/) et le dossier [`demo/reponses/`](demo/reponses/).
 
 ## 1. Explication : « C'est quoi un cache ? »
 

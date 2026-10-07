@@ -36,7 +36,7 @@ Ce qu'on en retient :
 
 Limites : 10 questions, 1 tirage par réponse, un juge de la même famille que le modèle testé, et les juges LLM préfèrent souvent les réponses longues. C'est une tendance, pas une preuve.
 
-Les 40 réponses, côte à côte, avec l'avis du juge : [page de démo](https://friteuseb.github.io/reponse_opti/demo/). Le banc est reproductible : voir [`demo/`](demo/).
+Les 40 réponses, côte à côte, avec l'avis du juge : [page de démo](https://cyril-wolfangel.com/reponse_opti/demo/). Le banc est reproductible : voir [`demo/`](demo/).
 
 ## La règle
 

@@ -1,0 +1,52 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "sans",
+   "utilite": "avec",
+   "raison": "A est plus concise et se lit plus vite, mais B est plus utile : il explique chaque PRAGMA, met en garde contre la copie du fichier avec cp pendant les écritures (que A suggère sans réserve) et contre le stockage sur NFS, et il donne des outils concrets de sauvegarde et de migration ainsi qu'un tableau récapitulatif."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "sans",
+   "utilite": "avec",
+   "raison": "B est plus concise et se lit plus vite. A est plus utile et plus exact : il met en garde contre la copie du fichier pendant les écritures et contre le stockage sur NFS, détaille les PRAGMA et les méthodes de sauvegarde, et propose une stratégie de migration. B laisse au contraire entendre qu'une simple copie du fichier suffit comme sauvegarde."
+  }
+ ],
+ "infos": {
+  "infos_reference": 16,
+  "manquantes": [
+   "SQLite offre de bonnes performances en lecture car tout est local, sans latence réseau"
+  ],
+  "en_plus": [
+   "PRAGMA synchronous = NORMAL recommandé",
+   "Les PRAGMA doivent être exécutés à chaque ouverture de connexion",
+   "Explication du rôle de chaque PRAGMA (WAL permet de lire pendant une écriture, busy_timeout évite l'erreur 'database is locked', foreign_keys est désactivé par défaut)",
+   "Garder les transactions d'écriture courtes (moins de 50 ms) et ne pas appeler d'API externe pendant une transaction",
+   "Sauvegarde possible via VACUUM INTO",
+   "Litestream réplique en continu vers un stockage objet (S3 ou compatible)",
+   "Ne pas copier le fichier avec cp pendant les écritures (risque de corruption), car les fichiers -wal et -shm font partie de l'état de la base",
+   "Ne pas placer le fichier SQLite sur NFS ou un partage réseau (verrous non fiables)",
+   "SQLite n'accepte pas l'accès par le réseau",
+   "Exemple Heroku : le fichier SQLite disparaît à chaque déploiement sur un système de fichiers éphémère",
+   "Les tables STRICT nécessitent SQLite 3.37 ou plus",
+   "Certaines migrations obligent à recréer la table",
+   "SQLite n'a pas de gestion des rôles ni de droits par utilisateur",
+   "Autres fonctions propres à PostgreSQL : pg_trgm, LISTEN/NOTIFY, sécurité par ligne, types plages",
+   "SQLite est pratique pour les tests et le développement, sans installation",
+   "Coût de PostgreSQL : un processus de plus à installer, mettre à jour et surveiller",
+   "Sauvegardes PostgreSQL avec pg_dump, ou pgBackRest avec archivage WAL pour restaurer à un instant précis",
+   "Un service PostgreSQL managé supprime l'administration mais ajoute un coût mensuel et une latence réseau",
+   "Éviter les particularités de SQLite comme rowid pour faciliter la migration",
+   "Tester la migration avec pgloader à l'avance",
+   "Tableau récapitulatif comparatif",
+   "Condition explicite : choisir SQLite seulement si l'hébergeur conserve le disque entre les déploiements"
+  ]
+ }
+}

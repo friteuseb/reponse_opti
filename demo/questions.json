@@ -1,0 +1,12 @@
+[
+  {"id": "cache", "type": "explication", "q": "C'est quoi un cache, et pourquoi ça accélère une application ?"},
+  {"id": "dns", "type": "explication", "q": "Explique-moi comment fonctionne le DNS quand je tape une adresse dans mon navigateur."},
+  {"id": "index", "type": "explication", "q": "À quoi sert un index dans une base de données, et quand faut-il éviter d'en créer ?"},
+  {"id": "oauth", "type": "explication", "q": "Comment fonctionne la connexion « Se connecter avec Google » sur un site ?"},
+  {"id": "ssh", "type": "procédure", "q": "Comment je configure une connexion SSH par clé vers mon serveur, au lieu du mot de passe ?"},
+  {"id": "pgrestore", "type": "procédure", "q": "Comment je restaure une sauvegarde PostgreSQL faite avec pg_dump sur un nouveau serveur ?"},
+  {"id": "lent", "type": "diagnostic", "q": "Mon site WordPress est devenu lent depuis une semaine. Par où je commence pour trouver la cause ?"},
+  {"id": "disque", "type": "diagnostic", "q": "Mon serveur Linux me dit que le disque est plein. Comment je trouve ce qui prend la place et je libère de l'espace sans rien casser ?"},
+  {"id": "sqlite", "type": "comparaison", "q": "SQLite ou PostgreSQL pour une petite application web avec quelques centaines d'utilisateurs ?"},
+  {"id": "cookies", "type": "explication", "q": "Explique à un artisan qui a un site vitrine ce qu'il doit faire pour être en règle avec le RGPD sur les cookies."}
+]

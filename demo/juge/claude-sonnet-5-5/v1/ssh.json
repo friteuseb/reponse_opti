@@ -1,0 +1,43 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "avec",
+   "utilite": "avec",
+   "raison": "B est plus clair grâce à ses étapes numérotées, à la distinction explicite entre clé privée et clé publique et à un vocabulaire simple. Il est aussi plus utile pour agir sans risque : il vérifie la syntaxe avec `sshd -t`, contrôle la configuration effective avec `sshd -T` et confirme que le mot de passe est bien refusé. A apporte en revanche des compléments appréciables (PowerShell, fichier `~/.ssh/config`, port personnalisé)."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "A est plus linéaire et sécurisée, avec la vérification de syntaxe via sshd -t et le test du refus du mot de passe, ce qui la rend plus facile à suivre ; B couvre davantage de situations concrètes (port personnalisé, PowerShell, repli RSA, fichier ~/.ssh/config, ssh -v et logs serveur), ce qui la rend plus utile en pratique."
+  }
+ ],
+ "infos": {
+  "infos_reference": 21,
+  "manquantes": [
+   "Alternative RSA 4096 bits (ssh-keygen -t rsa -b 4096) si le serveur est trop ancien pour Ed25519",
+   "Option -p de ssh-copy-id pour un port SSH non standard",
+   "Commande spécifique à Windows PowerShell (type $env:USERPROFILE\\.ssh\\id_ed25519.pub | ssh ...)",
+   "Réglage PermitRootLogin prohibit-password dans sshd_config",
+   "Fichier ~/.ssh/config avec un alias Host (HostName, User, Port, IdentityFile) pour se connecter avec 'ssh monserveur'",
+   "Mode verbeux ssh -v pour diagnostiquer",
+   "Consultation des logs côté serveur (journalctl -u ssh ou /var/log/auth.log)"
+  ],
+  "en_plus": [
+   "Ne jamais partager la clé privée id_ed25519 : seul le fichier .pub quitte le poste",
+   "ssh-copy-id demande le mot de passe une dernière fois et ajoute la clé dans ~/.ssh/authorized_keys",
+   "Vérification de la syntaxe de la configuration avec sudo sshd -t avant de recharger",
+   "Utilisation de systemctl reload plutôt que restart",
+   "Test de refus du mot de passe avec ssh -o PubkeyAuthentication=no, réponse attendue : Permission denied (publickey)",
+   "Vérification de la configuration effective avec sudo sshd -T | grep -i passwordauthentication",
+   "Option ssh -i pour préciser la clé quand on en utilise plusieurs"
+  ]
+ }
+}

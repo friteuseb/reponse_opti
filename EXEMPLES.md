@@ -1,10 +1,10 @@
 # Exemples avant / après
 
-Mêmes questions, même modèle. À gauche, la réponse par défaut. À droite, la réponse avec la règle.
+Exemples rédigés à la main pour illustrer chaque règle. Pour des réponses réelles de modèle, voir la [page de démo](https://friteuseb.github.io/reponse_opti/demo/) et le dossier [`demo/reponses/`](demo/reponses/).
 
 ## 1. Explication : « C'est quoi un cache ? »
 
-**Avant** (1 phrase, 45 mots)
+**Avant** (1 phrase, 46 mots)
 
 > Un cache constitue essentiellement une couche de stockage à haute vitesse qui permet de conserver à portée de main les données fréquemment sollicitées, afin que votre application puisse récupérer ces informations considérablement plus vite plutôt que d'interroger de manière répétée la base de données sous-jacente.
 
@@ -37,7 +37,7 @@ Ce qui change : une action par étape, à l'impératif, dans l'ordre. La command
 
 **Après**
 
-> Ne supprime pas ce lien. Le fichier `.stignore` le référence : sans lui, Syncthing copie 14 Go de vidéos.
+> Danger : ne supprime pas ce lien. Le fichier `.stignore` le référence : sans lui, Syncthing copie 14 Go de vidéos.
 
 Ce qui change : l'ordre vient en premier. La conséquence est concrète et chiffrée.
 

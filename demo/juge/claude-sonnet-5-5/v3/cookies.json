@@ -1,0 +1,49 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "B se lit plus facilement grâce à sa procédure linéaire et numérotée, avec des tests concrets ; A est plus utile, car il est plus complet : mentions légales, formulaire de contact, durée de 13 mois, polices hébergées, outils par plateforme et checklist finale."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "A est plus concise et suit une procédure linéaire facile à appliquer, tandis que B est plus complète : elle précise que continuer à naviguer ne vaut pas consentement, impose le choix par finalité et limite la durée des cookies à 13 mois, et ajoute Google Fonts, les mentions légales, le formulaire de contact, les outils par plateforme et une checklist, ce qui aide mieux l'artisan à se mettre réellement en règle."
+  }
+ ],
+ "infos": {
+  "infos_reference": 33,
+  "manquantes": [
+   "Outils d'inventaire des cookies : Cookiebot Scanner, Webcookies, Cookieviz de la CNIL",
+   "Continuer à naviguer ou fermer le bandeau ne vaut pas consentement",
+   "Le visiteur doit pouvoir choisir finalité par finalité (statistiques, publicité…)",
+   "Les cookies déposés ne doivent pas durer plus de 13 mois",
+   "Faire charger les vidéos et widgets de réseaux sociaux seulement après un clic",
+   "Héberger les polices (Google Fonts) sur son propre serveur",
+   "Plugins WordPress : Complianz, Real Cookie Banner, CookieYes (et Iubenda parmi les solutions générales)",
+   "Wix, Squarespace, Shopify et Webflow intègrent un module de gestion des cookies à activer et à paramétrer",
+   "Mentions légales obligatoires : identité, SIRET, adresse, contact, hébergeur",
+   "La politique de confidentialité doit préciser les données collectées, leur finalité, leur durée de conservation et les droits des personnes (accès, suppression)",
+   "Formulaire de contact : informer près du formulaire, ne demander que le nécessaire, ne pas conserver les messages indéfiniment",
+   "Renvoi vers les ressources officielles de la CNIL (cnil.fr, rubrique Cookies et traceurs)"
+  ],
+  "en_plus": [
+   "Méthode détaillée d'inventaire via F12 : onglet Application (Chrome) ou Stockage (Firefox), puis Cookies, en notant le nom et l'émetteur de chaque cookie",
+   "Demander au webmaster en cas de doute sur le contenu de la page",
+   "Remplacer Google Maps par OpenStreetMap",
+   "Protocole de test complet : ne rien cliquer, puis cliquer sur Tout refuser, puis sur Tout accepter, et vérifier à chaque étape",
+   "Refaire le test tous les 6 mois et après chaque modification du site ou ajout de plugin",
+   "La CNIL a déjà sanctionné des sites dont le bouton de refus était caché ou demandait plusieurs clics",
+   "Le cookie de choix de la langue est un exemple de cookie indispensable",
+   "Un site avec seulement du texte, des photos et un formulaire n'a probablement aucun cookie à déclarer, mais il faut le vérifier"
+  ]
+ }
+}

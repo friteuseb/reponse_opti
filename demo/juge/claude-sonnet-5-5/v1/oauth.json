@@ -1,0 +1,42 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "sans",
+   "utilite": "sans",
+   "raison": "A explique le mécanisme de façon progressive et accessible. Elle couvre à la fois le principe, la sécurité, la mise en œuvre et les avantages et limites, ce qui répond mieux à une question générale. B est plus pointue sur les jetons et les vérifications, mais plus technique et moins contextualisée."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "sans",
+   "utilite": "sans",
+   "raison": "B explique le flux de façon plus accessible et plus complète : il couvre le consentement, la sécurité, la mise en place côté développeur ainsi que les avantages et limites, tandis que A, exact et bien structuré, reste plus technique et mentionne le nonce aux vérifications sans l'avoir introduit dans le déroulement."
+  }
+ ],
+ "infos": {
+  "infos_reference": 23,
+  "manquantes": [
+   "L'authentification chez Google peut inclure la double authentification",
+   "Google renvoie parfois aussi un refresh token",
+   "Côté développeur : créer un projet dans la Google Cloud Console et obtenir des identifiants OAuth (client ID et secret)",
+   "Côté développeur : déclarer les URI de redirection autorisées auprès de Google (préenregistrement)",
+   "Avantages : inscription rapide, pas de mot de passe supplémentaire à retenir, sécurité déléguée à Google",
+   "Limites : dépendance à Google (perte d'accès si le compte est suspendu), partage de données personnelles, suivi potentiel des usages"
+  ],
+  "en_plus": [
+   "Détail du PKCE : envoi du code_challenge dans la redirection initiale, puis du code_verifier lors de l'échange du code",
+   "Le serveur vérifie que le state reçu correspond à celui envoyé à l'étape initiale",
+   "Liste détaillée des claims de l'ID token : email_verified, picture, aud = client_id, iss = https://accounts.google.com, exp",
+   "La signature est vérifiée avec les clés publiques de Google",
+   "Vérification du nonce, qui protège contre le rejeu d'un jeton d'identité",
+   "Le client_secret gardé côté serveur protège contre l'usurpation du site auprès de Google",
+   "Variante Google Identity Services : le navigateur reçoit directement l'ID token et le transmet au serveur, qui applique les mêmes vérifications"
+  ]
+ }
+}

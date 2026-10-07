@@ -1,0 +1,47 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "B se lit plus facilement grâce à sa procédure numérotée, linéaire et concise. A est plus utile : il couvre tous les formats (y compris tar), détaille les options de pg_restore (--no-owner, -C, --clean) et ajoute une section de dépannage des erreurs fréquentes. B contient en plus une légère imprécision : l'absence des rôles provoque des erreurs, mais pas un échec complet de la restauration."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "A est plus concise et suit une procédure linéaire facile à suivre, tandis que B, plus long, est plus utile grâce à son tableau d'options (--no-owner, -C, --clean), aux alternatives pour les rôles et à la section de dépannage des erreurs fréquentes."
+  }
+ ],
+ "infos": {
+  "infos_reference": 26,
+  "manquantes": [
+   "Commandes d'installation et de vérification du service (apt install postgresql, systemctl status postgresql)",
+   "Création manuelle des rôles avec CREATE ROLE ... WITH LOGIN PASSWORD",
+   "Alternative SQL pour créer la base : CREATE DATABASE ma_base OWNER mon_user",
+   "Format tar restaurable avec pg_restore",
+   "Option --no-owner pour ignorer les propriétaires d'origine (et comme solution à l'erreur 'role does not exist')",
+   "Option --no-privileges pour ignorer les GRANT/REVOKE",
+   "Option -C avec -d postgres pour créer la base automatiquement lors de la restauration",
+   "Option --if-exists associée à --clean",
+   "Option -1 pour exécuter la restauration dans une seule transaction",
+   "Problème d'authentification : vérifier pg_hba.conf ou utiliser -h localhost",
+   "Restauration vers une machine distante avec -h adresse_ip -p 5432"
+  ],
+  "en_plus": [
+   "Chaînes de sortie de la commande file permettant d'identifier le format (« PostgreSQL custom database dump » vs « ASCII text »)",
+   "Copier le fichier de sauvegarde sur le nouveau serveur",
+   "Utilisation de pg_dumpall --globals-only, qui exporte aussi les tablespaces en plus des rôles",
+   "Exemple d'extension pg_trgm à installer",
+   "L'option -j ne fonctionne qu'avec les formats custom et directory et doit être ajustée au nombre de cœurs",
+   "Comparer le nombre de lignes des tables principales avec celui de l'ancien serveur",
+   "Ne pas restaurer dans une base non vide sans --clean, sinon les objets existants provoquent des erreurs"
+  ]
+ }
+}

@@ -1,0 +1,51 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "B se suit plus facilement grâce à ses étapes numérotées, ses règles de sécurité placées en tête et son étape de vérification finale, mais A aide davantage à agir : il couvre plus de cas concrets (ncdu, commande pour localiser les inodes, snap, anciens noyaux, dnf pour RHEL, extension LVM) tout en restant exact et prudent."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "A se lit plus facilement grâce à ses étapes numérotées et ses phrases courtes. B est plus utile : il couvre plus de cas (ncdu, dnf, snap, recherche des dossiers saturés en inodes, limite permanente de journald, extension LVM) et apporte des avertissements plus précis sur Docker et les bases de données."
+  }
+ ],
+ "infos": {
+  "infos_reference": 26,
+  "manquantes": [
+   "Outil interactif ncdu (sudo ncdu -x /) pour explorer l'occupation",
+   "Commande dnf clean all pour RHEL/Fedora",
+   "journalctl --disk-usage pour mesurer les journaux et l'option --vacuum-time=7d",
+   "ls -lhS /var/log pour repérer les gros logs, et suppression possible des anciens fichiers .1 (pas seulement .gz)",
+   "Nettoyage des anciennes révisions Snap (snap list --all, snap remove --revision)",
+   "Nettoyage des caches et corbeilles utilisateurs (~/.cache, ~/.local/share/Trash)",
+   "Vieux dumps, archives et backups à vérifier manuellement avant suppression",
+   "Commande pour localiser le dossier contenant le plus de fichiers en cas d'inodes saturés (find | cut | sort | uniq -c)",
+   "Ne pas supprimer dans /lib ni /boot (et mention explicite des fichiers de bases de données /var/lib/mysql, /var/lib/postgresql)",
+   "Risque de l'option -a de docker system prune (prune sans -a ni --volumes est plus sûr)",
+   "Éviter rm -rf avec variables ou jokers sans vérifier le chemin avec ls",
+   "Si le disque est trop plein pour travailler, libérer d'abord quelques centaines de Mo (cache apt, vieux logs compressés)",
+   "Limiter durablement le journal systemd via SystemMaxUse=500M dans /etc/systemd/journald.conf",
+   "Agrandissement via LVM (lvextend -r) ou extension du volume chez l'hébergeur"
+  ],
+  "en_plus": [
+   "Explication que df compte l'espace des fichiers supprimés encore ouverts alors que du ne le voit pas",
+   "Commande explicite sudo systemctl restart nom-du-service et vérification avec df -h que l'espace est revenu",
+   "Commande find /var/log -name '*.gz' -mtime +30 -delete pour supprimer les vieux logs compressés",
+   "Description de ce que supprime docker system prune (conteneurs arrêtés, réseaux inutilisés, images sans étiquette)",
+   "Commencer par les actions les moins risquées",
+   "Étape de vérification finale : la partition doit passer sous 85 %, et systemctl --failed pour contrôler les services",
+   "Déplacer les données lourdes vers une autre partition comme alternative à l'agrandissement",
+   "Recherche des fichiers dès 100 Mo (seuil plus bas que 500 Mo)"
+  ]
+ }
+}

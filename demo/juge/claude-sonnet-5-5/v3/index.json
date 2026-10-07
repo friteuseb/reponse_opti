@@ -1,0 +1,45 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "B est plus concise et plus directe, avec un exemple chiffré concret. A est plus complète : elle couvre davantage de cas à éviter (requêtes peu sélectives, colonnes volumineuses) et de bonnes pratiques (index partiels, ordre des colonnes), ce qui la rend plus utile malgré sa longueur."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "A est plus concise et s'appuie sur un exemple chiffré qui rend le gain très parlant, tandis que B, plus longue, est plus complète et donc plus utile : cas supplémentaires (requêtes lisant une grande part de la table, colonnes volumineuses), index partiels, bonnes pratiques et tableau récapitulatif."
+  }
+ ],
+ "infos": {
+  "infos_reference": 23,
+  "manquantes": [
+   "Autres types d'index possibles : table de hachage, index bitmap, B+ tree",
+   "Analogie avec l'index à la fin d'un livre",
+   "Un index accélère les regroupements (GROUP BY)",
+   "Un index sert aux contraintes d'unicité (UNIQUE, clé primaire), qu'il garantit",
+   "Complexité : full table scan en O(n) contre O(log n) avec un B-tree",
+   "Exception à la faible cardinalité : index bitmap ou index partiel dans certains cas",
+   "Éviter l'index quand la requête lit une grande partie de la table (ex. 30 % des lignes) : le scan séquentiel est plus efficace que les accès aléatoires",
+   "Colonnes très volumineuses (textes longs, JSON, blobs) : coûteux en espace, préférer un index spécialisé (full-text, GIN) ou indexer une version réduite (hash, préfixe)",
+   "Penser à l'ordre des colonnes dans les index composites",
+   "Surveiller et supprimer les index inutilisés via les vues statistiques du SGBD",
+   "Utiliser des index partiels quand seule une portion des données est ciblée (ex. WHERE actif = true)"
+  ],
+  "en_plus": [
+   "L'index associe les valeurs d'une ou plusieurs colonnes à l'emplacement des lignes, et l'arbre B reste trié",
+   "Exemple chiffré : sur 10 millions de lignes, la base traverse environ 3 à 4 niveaux d'arbre au lieu de lire toute la table",
+   "Seuil de petite table donné comme quelques milliers de lignes",
+   "Appliquer une fonction sur la colonne (ex. WHERE LOWER(nom) = 'dupont') empêche souvent l'utilisation de l'index",
+   "Vérifier le plan d'exécution avec EXPLAIN avant et après la création de l'index"
+  ]
+ }
+}

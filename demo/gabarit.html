@@ -1,0 +1,422 @@
+<title>Banc d'essai écriture contrôlée</title>
+<meta name="description" content="Une règle d'écriture pour les assistants IA, mesurée sur 40 réponses de Claude Sonnet 5.5 et jugée à l'aveugle.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<style>
+/* Planche de manuel technique : un cadre repéré, des panneaux lettrés, un cartouche en pied de page. */
+:root {
+  --papier: #f4f6f5;
+  --panneau: #ffffff;
+  --encre: #15212b;
+  --encre-2: #4f5c66;
+  --encre-3: #7b8790;
+  --trait: #c7cfd4;
+  --trait-fort: #15212b;
+  --repere: #e6eaec;
+  --attention: #9a5b00;
+  --attention-fond: #fff3dc;
+  --v1: #2a78d6;
+  --v2: #eb6834;
+  --v3: #1baf7a;
+  --v3-texte: #0d7a53;
+  --zone: #e3f4ec;
+  --f-titre: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --f-texte: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --pas: 8px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --papier: #0f1418; --panneau: #161d22; --encre: #e4eaee; --encre-2: #a9b5bd; --encre-3: #7f8b94;
+    --trait: #2c3740; --trait-fort: #c9d3da; --repere: #1c252b; --attention: #f0b450; --attention-fond: #2b2210;
+    --v1: #3987e5; --v2: #d95926; --v3: #199e70; --v3-texte: #4fd0a0; --zone: #12302a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --papier: #0f1418; --panneau: #161d22; --encre: #e4eaee; --encre-2: #a9b5bd; --encre-3: #7f8b94;
+  --trait: #2c3740; --trait-fort: #c9d3da; --repere: #1c252b; --attention: #f0b450; --attention-fond: #2b2210;
+  --v1: #3987e5; --v2: #d95926; --v3: #199e70; --v3-texte: #4fd0a0; --zone: #12302a;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--papier); color: var(--encre); font-family: var(--f-texte); font-size: 16px; line-height: 1.55; }
+.planche { max-width: 1180px; margin: 0 auto; padding-inline: 16px; padding-block: 24px 40px; }
+.cadre { border: 2px solid var(--trait-fort); padding: clamp(12px, 2.5vw, 28px); display: grid; gap: 20px; position: relative; }
+.reperes { display: grid; grid-template-columns: repeat(6, 1fr); font-family: var(--f-mono); font-size: 11px; color: var(--encre-3); border-bottom: 1px solid var(--trait); margin-bottom: -8px; }
+.reperes span { text-align: center; border-left: 1px solid var(--trait); padding-bottom: 2px; }
+.reperes span:first-child { border-left: 0; }
+
+h1, h2, h3 { font-family: var(--f-titre); font-weight: 600; letter-spacing: .01em; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.02; font-weight: 700; }
+h2 { font-size: 1.35rem; text-transform: uppercase; letter-spacing: .06em; }
+p { margin: 0; }
+a { color: inherit; text-decoration-color: var(--encre-3); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, select:focus-visible { outline: 3px solid var(--v1); outline-offset: 2px; }
+
+.entete { display: grid; gap: 12px; }
+.entete .sur-titre { font-family: var(--f-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .12em; color: var(--encre-2); }
+.entete .chapeau { max-width: 64ch; font-size: 1.08rem; color: var(--encre-2); }
+.fiche { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--f-mono); font-size: 12.5px; color: var(--encre-2); }
+.fiche b { color: var(--encre); font-weight: 500; }
+
+.grille { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
+.panneau { background: var(--panneau); border: 1px solid var(--trait-fort); min-width: 0; display: flex; flex-direction: column; }
+.panneau > header { display: flex; align-items: stretch; border-bottom: 1px solid var(--trait-fort); }
+.panneau > header .lettre { font-family: var(--f-titre); font-weight: 700; font-size: 1.1rem; background: var(--trait-fort); color: var(--panneau); width: 2.2rem; display: grid; place-items: center; flex: none; }
+.panneau > header h2 { padding: 6px 12px; font-size: 1.05rem; align-self: center; }
+.panneau > header .note { margin-left: auto; padding: 6px 12px; font-family: var(--f-mono); font-size: 11px; color: var(--encre-3); align-self: center; text-align: right; }
+.panneau .corps { padding: 16px; display: grid; gap: 14px; min-width: 0; }
+.p-verdict { grid-column: span 7; }
+.p-graphe { grid-column: span 5; }
+.p-mesures, .p-explorer, .p-methode { grid-column: span 12; }
+@media (max-width: 900px) { .p-verdict, .p-graphe { grid-column: span 12; } }
+
+/* A : verdict */
+.versions { display: grid; gap: 0; }
+.version { display: grid; grid-template-columns: 3.4rem 1fr; gap: 12px; padding-block: 12px; border-top: 1px solid var(--trait); }
+.version:first-child { border-top: 0; padding-top: 0; }
+.version .tag { font-family: var(--f-mono); font-weight: 500; font-size: 13px; display: flex; align-items: center; gap: 6px; height: 1.6rem; }
+.version .tag i { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.version h3 { font-size: 1.15rem; margin-bottom: 2px; }
+.version p { color: var(--encre-2); max-width: 62ch; }
+.version strong { color: var(--encre); }
+.version.gagnante { background: var(--zone); margin-inline: -16px; padding-inline: 16px; border-top-color: transparent; }
+.version.gagnante + .version { border-top-color: transparent; }
+.chiffres { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.chip { font-family: var(--f-mono); font-size: 12px; border: 1px solid var(--trait); padding: 1px 8px; border-radius: 3px; background: var(--panneau); color: var(--encre); font-variant-numeric: tabular-nums; }
+
+/* B : graphique */
+.graphe-boite { position: relative; }
+.graphe-boite svg { width: 100%; height: auto; display: block; overflow: visible; }
+.graphe-boite text { font-family: var(--f-mono); font-size: 12.5px; fill: var(--encre-2); }
+.graphe-boite .titre-axe { fill: var(--encre); font-size: 13px; }
+.graphe-boite .etiquette { font-family: var(--f-texte); font-size: 14.5px; font-weight: 700; fill: var(--encre); }
+.graphe-boite .zone-texte { font-family: var(--f-texte); font-size: 13px; fill: var(--v3-texte); font-weight: 700; }
+.point { cursor: pointer; }
+.point:focus { outline: none; }
+.point:focus .marque, .point:hover .marque { stroke-width: 3; }
+.bulle { position: absolute; pointer-events: none; background: var(--panneau); border: 1px solid var(--trait-fort); padding: 8px 10px; font-size: 13px; line-height: 1.4; max-width: 240px; box-shadow: 0 4px 14px rgb(0 0 0 / .12); z-index: 2; }
+.bulle b { font-family: var(--f-titre); font-size: 1rem; }
+.legende { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--encre-2); }
+.legende span { display: inline-flex; align-items: center; gap: 6px; }
+.legende svg { flex: none; }
+.lecture { font-size: 13.5px; color: var(--encre-2); }
+
+/* C : mesures */
+.tableau { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+th, td { padding: 8px 12px; text-align: right; border-bottom: 1px solid var(--trait); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; white-space: normal; }
+thead th { font-family: var(--f-mono); font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; color: var(--encre-2); border-bottom: 1px solid var(--trait-fort); }
+td small { display: block; color: var(--encre-3); font-size: 12px; }
+td.mieux { font-weight: 700; }
+.pastille { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+
+/* D : explorateur */
+.commandes { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: end; }
+.commandes label { display: grid; gap: 4px; font-family: var(--f-mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--encre-2); }
+select { font: inherit; font-family: var(--f-texte); font-size: 15px; text-transform: none; letter-spacing: 0; color: var(--encre); background: var(--panneau); border: 1px solid var(--trait-fort); padding: 6px 10px; border-radius: 0; max-width: 100%; }
+.onglets { display: inline-flex; border: 1px solid var(--trait-fort); }
+.onglets button { font: inherit; font-family: var(--f-mono); font-size: 13px; padding: 6px 14px; background: var(--panneau); color: var(--encre); border: 0; border-left: 1px solid var(--trait-fort); cursor: pointer; }
+.onglets button:first-child { border-left: 0; }
+.onglets button[aria-pressed="true"] { background: var(--trait-fort); color: var(--panneau); }
+.question { font-family: var(--f-titre); font-size: 1.5rem; font-weight: 600; line-height: 1.15; }
+.question small { display: block; font-family: var(--f-mono); font-size: 11.5px; font-weight: 400; text-transform: uppercase; letter-spacing: .1em; color: var(--encre-2); margin-bottom: 4px; }
+.duel { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 760px) { .duel { grid-template-columns: 1fr; } }
+.colonne { border: 1px solid var(--trait); min-width: 0; display: flex; flex-direction: column; }
+.colonne > .tete { padding: 8px 12px; border-bottom: 1px solid var(--trait); display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; background: var(--repere); }
+.colonne > .tete strong { font-family: var(--f-titre); font-size: 1.05rem; }
+.colonne > .tete .mesures { font-family: var(--f-mono); font-size: 11.5px; color: var(--encre-2); font-variant-numeric: tabular-nums; }
+.texte { padding: 4px 16px 16px; max-height: 34rem; overflow: auto; font-size: 14.5px; }
+.texte h1, .texte h2, .texte h3, .texte h4 { font-family: var(--f-texte); font-weight: 700; font-size: 1rem; text-transform: none; letter-spacing: 0; margin: 1em 0 .3em; }
+.texte p, .texte ul, .texte ol, .texte pre, .texte table, .texte blockquote { margin: .5em 0; }
+.texte ul, .texte ol { padding-left: 1.3em; }
+.texte code { font-family: var(--f-mono); font-size: .88em; background: var(--repere); padding: 0 3px; }
+.texte pre { background: var(--repere); padding: 8px 10px; overflow-x: auto; }
+.texte pre code { background: none; padding: 0; }
+.texte table { display: block; overflow-x: auto; }
+.texte th, .texte td { font-size: 13px; white-space: normal; text-align: left; padding: 4px 8px; }
+.texte blockquote { border-left: 3px solid var(--trait); margin-left: 0; padding-left: 10px; color: var(--encre-2); }
+.avis { border: 1px solid var(--trait-fort); padding: 12px 14px; display: grid; gap: 8px; }
+.avis .ligne { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 14px; }
+.avis .ligne b { font-family: var(--f-mono); font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--encre-2); margin-right: 4px; }
+.avis q { color: var(--encre-2); font-style: italic; max-width: 90ch; }
+details summary { cursor: pointer; font-size: 14px; color: var(--encre-2); }
+details ul { margin: 6px 0 0; padding-left: 1.2em; font-size: 13.5px; color: var(--encre-2); columns: 2 22rem; }
+
+/* E : méthode */
+.methode { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px 28px; font-size: 14.5px; }
+.methode h3 { font-size: 1.05rem; margin-bottom: 4px; }
+.methode p, .methode li { color: var(--encre-2); }
+.methode ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
+.mise-en-garde { background: var(--attention-fond); border-left: 4px solid var(--attention); padding: 10px 14px; font-size: 14.5px; }
+.mise-en-garde b { color: var(--attention); font-family: var(--f-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .1em; margin-right: 6px; }
+
+/* Cartouche */
+.cartouche { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; border: 1px solid var(--trait-fort); background: var(--panneau); }
+.cartouche > div { padding: 8px 12px; border-left: 1px solid var(--trait-fort); min-width: 0; }
+.cartouche > div:first-child { border-left: 0; }
+.cartouche small { display: block; font-family: var(--f-mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: var(--encre-3); }
+.cartouche span { font-size: 14px; overflow-wrap: anywhere; }
+@media (max-width: 760px) {
+  .cartouche { grid-template-columns: 1fr 1fr; }
+  .cartouche > div:nth-child(odd) { border-left: 0; }
+  .cartouche > div:nth-child(n+3) { border-top: 1px solid var(--trait-fort); }
+  .reperes { display: none; }
+}
+@media (prefers-reduced-motion: no-preference) { .texte { scroll-behavior: smooth; } }
+</style>
+
+<main class="planche">
+  <div class="cadre">
+    <div class="reperes" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div>
+
+    <header class="entete">
+      <p class="sur-titre">Banc d'essai · écriture contrôlée pour assistants IA</p>
+      <h1>Une règle d'écriture pour l'IA, mesurée sur 40 réponses</h1>
+      <p class="chapeau">Andrej Karpathy conseille de faire écrire les LLM en ASD-STE100, l'anglais contrôlé des manuels de maintenance aéronautique. Nous avons transposé l'idée en français, puis mesuré trois versions de la règle face à une réponse sans règle.</p>
+      <div class="fiche" id="fiche"></div>
+    </header>
+
+    <div class="grille">
+      <section class="panneau p-verdict" aria-labelledby="t-a">
+        <header><span class="lettre">A</span><h2 id="t-a">Trois versions, un compromis</h2><span class="note">face à la réponse sans règle</span></header>
+        <div class="corps"><div class="versions" id="versions"></div></div>
+      </section>
+
+      <section class="panneau p-graphe" aria-labelledby="t-b">
+        <header><span class="lettre">B</span><h2 id="t-b">Clarté contre utilité</h2><span class="note">% de duels gagnés</span></header>
+        <div class="corps">
+          <div class="graphe-boite" id="graphe"></div>
+          <div class="legende" id="legende"></div>
+          <p class="lecture">Chaque point compte 10 duels à l'aveugle : 5 questions jugées dans les deux ordres. Au centre (50 %, 50 %), la règle ne change rien. En haut à droite, elle gagne sur les deux plans.</p>
+        </div>
+      </section>
+
+      <section class="panneau p-mesures" aria-labelledby="t-c">
+        <header><span class="lettre">C</span><h2 id="t-c">Mesures automatiques</h2><span class="note">médianes sur 10 réponses, sauf totaux</span></header>
+        <div class="corps"><div class="tableau" id="mesures"></div></div>
+      </section>
+
+      <section class="panneau p-explorer" aria-labelledby="t-d">
+        <header><span class="lettre">D</span><h2 id="t-d">Les 40 réponses, côte à côte</h2><span class="note">textes bruts du banc</span></header>
+        <div class="corps">
+          <div class="commandes">
+            <label for="choix-question">Question<select id="choix-question"></select></label>
+            <div class="commandes-version">
+              <span style="display:block;font-family:var(--f-mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--encre-2);margin-bottom:4px">Comparer avec</span>
+              <div class="onglets" role="group" aria-label="Version de la règle" id="onglets"></div>
+            </div>
+          </div>
+          <p class="question" id="question"></p>
+          <div class="avis" id="avis"></div>
+          <div class="duel">
+            <article class="colonne"><div class="tete" id="tete-sans"></div><div class="texte" id="texte-sans"></div></article>
+            <article class="colonne"><div class="tete" id="tete-avec"></div><div class="texte" id="texte-avec"></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="panneau p-methode" aria-labelledby="t-e">
+        <header><span class="lettre">E</span><h2 id="t-e">Méthode et limites</h2><span class="note">à lire avant de citer un chiffre</span></header>
+        <div class="corps">
+          <div class="methode">
+            <div>
+              <h3>Protocole</h3>
+              <ul>
+                <li>10 questions techniques en français : 5 pour expliquer, 5 pour agir (procédure, diagnostic, comparaison).</li>
+                <li>Quatre conditions par question : sans règle, puis règles v1, v2 et v3 dans le prompt système.</li>
+                <li>Un seul tirage par réponse, avec les paramètres par défaut du modèle.</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Jugement</h3>
+              <ul>
+                <li>Le juge voit deux réponses anonymes, A et B, et choisit la plus claire, puis la plus utile.</li>
+                <li>Chaque paire passe deux fois, dans les deux ordres, pour neutraliser le biais de position.</li>
+                <li>Le juge liste aussi les informations de la réponse sans règle et vérifie lesquelles manquent.</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Mesures</h3>
+              <ul>
+                <li>Mots et phrases comptés après retrait du code et des liens. Une ligne de liste compte comme une phrase.</li>
+                <li>Lisibilité : formule de Kandel et Moles (1958), adaptation de Flesch au français. Plus haut = plus facile.</li>
+                <li>Formules creuses, verbes vides et passifs : détection par liste et motifs, donc approximative.</li>
+              </ul>
+            </div>
+          </div>
+          <p class="mise-en-garde"><b>Attention</b>Échantillon réduit : 10 questions et 1 tirage. Le juge appartient à la même famille que le modèle testé. Les juges LLM ont aussi tendance à préférer les réponses longues, ce qui pénalise la v3 sur « utilité » pour les explications. Ces résultats donnent une tendance, pas une preuve.</p>
+        </div>
+      </section>
+    </div>
+
+    <footer class="cartouche">
+      <div><small>Titre</small><span>Écriture contrôlée : banc d'essai</span></div>
+      <div><small>Règle</small><span><a href="https://github.com/friteuseb/reponse_opti" target="_blank" rel="noopener">github.com/friteuseb/reponse_opti</a></span></div>
+      <div><small>Inspiré de</small><span>ASD-STE100, appliqué à 80 %</span></div>
+      <div><small>Date</small><span id="date">7 octobre 2026</span></div>
+    </footer>
+  </div>
+</main>
+
+<script type="application/json" id="donnees">__DONNEES__</script>
+<script>
+(() => {
+  const D = JSON.parse(document.getElementById("donnees").textContent);
+  const M = Object.values(D.modeles)[0];
+  const lignes = D.detail;
+  const VERSIONS = {
+    v1: { nom: "Règle v1", court: "v1", couleur: "var(--v1)", titre: "Règle courte, appliquée partout",
+          resume: "Les phrases raccourcissent et la réponse se lit mieux. Mais le modèle coupe aussi du fond : options de commande, cas particuliers, outils cités." },
+    v2: { nom: "Règle v2", court: "v2", couleur: "var(--v2)", titre: "v1 + « le fond d'abord »",
+          resume: "La réponse redevient complète, parfois plus que sans règle. Elle s'allonge et perd son avantage de clarté." },
+    v3: { nom: "Règle v3", court: "v3", couleur: "var(--v3)", titre: "Deux dosages : expliquer ou faire",
+          resume: "Pour expliquer, elle va à l'essentiel : plus claire à chaque duel, mais moins détaillée, et c'est voulu. Pour agir, elle garde les étapes et gagne sur les deux plans." },
+  };
+  const COND = { sans: "Sans règle", v1: "Règle v1", v2: "Règle v2", v3: "Règle v3" };
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const pct = (a, b) => Math.round(100 * a / b);
+  const nf = n => String(n).replace(".", ",");
+
+  // Fiche
+  const n = lignes.length;
+  document.getElementById("fiche").innerHTML = [
+    ["Modèle testé", M.nom], ["Questions", n], ["Réponses", n * Object.keys(COND).length],
+    ["Juge à l'aveugle", "Claude Opus 5.5"], ["Duels", Object.values(M.variantes).reduce((s, v) => s + v.tout.duels, 0)],
+  ].map(([k, v]) => `<span>${k} <b>${esc(v)}</b></span>`).join("");
+
+  // A : versions
+  const sans = M.conditions.sans.medianes;
+  document.getElementById("versions").innerHTML = Object.entries(VERSIONS).map(([k, v]) => {
+    const g = M.variantes[k], c = M.conditions[k].medianes;
+    const dMots = Math.round(100 * (c.mots - sans.mots) / sans.mots);
+    const puces = k === "v3"
+      ? [`Agir : plus claire ${g.faire.clarte}/${g.faire.duels}`, `plus utile ${g.faire.utilite}/${g.faire.duels}`,
+         `Expliquer : plus claire ${g.expliquer.clarte}/${g.expliquer.duels}`, `${dMots > 0 ? "+" : ""}${dMots} % de mots`]
+      : [`plus claire ${g.tout.clarte}/${g.tout.duels}`, `plus utile ${g.tout.utilite}/${g.tout.duels}`,
+         `${g.tout.perdues_pct} % d'infos perdues`, `${dMots > 0 ? "+" : ""}${dMots} % de mots`];
+    return `<div class="version${k === "v3" ? " gagnante" : ""}">
+      <div class="tag"><i style="background:${v.couleur}"></i>${v.court}</div>
+      <div><h3>${esc(v.titre)}</h3><p>${esc(v.resume)}</p>
+      <div class="chiffres">${puces.map(p => `<span class="chip">${esc(p)}</span>`).join("")}</div></div></div>`;
+  }).join("");
+
+  // B : graphique clarté / utilité
+  const pts = [];
+  for (const k of Object.keys(VERSIONS)) for (const grp of ["expliquer", "faire"]) {
+    const g = M.variantes[k][grp];
+    pts.push({ k, grp, x: pct(g.clarte, g.duels), y: pct(g.utilite, g.duels), g });
+  }
+  const W = 440, H = 370, ml = 50, mr = 18, mt = 14, mb = 48;
+  const sx = v => ml + v / 100 * (W - ml - mr), sy = v => H - mb - v / 100 * (H - mt - mb);
+  const forme = (p, r) => p.grp === "expliquer"
+    ? `<circle class="marque" cx="${sx(p.x)}" cy="${sy(p.y)}" r="${r}" fill="${VERSIONS[p.k].couleur}" stroke="var(--panneau)" stroke-width="2"/>`
+    : `<rect class="marque" x="${sx(p.x) - r}" y="${sy(p.y) - r}" width="${2 * r}" height="${2 * r}" rx="2" fill="${VERSIONS[p.k].couleur}" stroke="var(--panneau)" stroke-width="2"/>`;
+  let svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Nuage de points : pourcentage de duels gagnés en clarté (horizontal) et en utilité (vertical) pour chaque version et chaque type de question.">`;
+  svg += `<rect x="${sx(50)}" y="${sy(100)}" width="${sx(100) - sx(50)}" height="${sy(50) - sy(100)}" fill="var(--zone)"/>`;
+  svg += `<text class="zone-texte" x="${sx(98)}" y="${sy(100) + 16}" text-anchor="end">gagne sur les deux plans</text>`;
+  for (const t of [0, 25, 50, 75, 100]) {
+    const fort = t === 50;
+    svg += `<line x1="${sx(t)}" x2="${sx(t)}" y1="${sy(0)}" y2="${sy(100)}" stroke="var(${fort ? "--encre-3" : "--trait"})" stroke-width="1" ${fort ? 'stroke-dasharray="4 3"' : ""}/>`;
+    svg += `<line x1="${sx(0)}" x2="${sx(100)}" y1="${sy(t)}" y2="${sy(t)}" stroke="var(${fort ? "--encre-3" : "--trait"})" stroke-width="1" ${fort ? 'stroke-dasharray="4 3"' : ""}/>`;
+    svg += `<text x="${sx(t)}" y="${sy(0) + 16}" text-anchor="middle">${t}</text>`;
+    svg += `<text x="${sx(0) - 8}" y="${sy(t) + 4}" text-anchor="end">${t}</text>`;
+  }
+  svg += `<text class="titre-axe" x="${sx(50)}" y="${H - 6}" text-anchor="middle">plus claire que sans règle (%)</text>`;
+  svg += `<text class="titre-axe" transform="translate(12 ${sy(50)}) rotate(-90)" text-anchor="middle">plus utile que sans règle (%)</text>`;
+  // Étiquettes directes : décalage choisi pour rester dans le cadre.
+  const decal = { "v1-expliquer": [10, -10, "start"], "v1-faire": [-12, -12, "end"], "v2-expliquer": [12, 4, "start"],
+                  "v2-faire": [12, 16, "start"], "v3-expliquer": [-12, -12, "end"], "v3-faire": [-12, -12, "end"] };
+  pts.forEach((p, i) => {
+    const [dx, dy, ta] = decal[`${p.k}-${p.grp}`];
+    svg += `<g class="point" tabindex="0" data-i="${i}">
+      <circle cx="${sx(p.x)}" cy="${sy(p.y)}" r="16" fill="transparent"/>${forme(p, 7)}
+      <text class="etiquette" x="${sx(p.x) + dx}" y="${sy(p.y) + dy}" text-anchor="${ta}">${p.k} · ${p.grp}</text></g>`;
+  });
+  svg += `</svg>`;
+  const boite = document.getElementById("graphe");
+  boite.innerHTML = svg + `<div class="bulle" hidden></div>`;
+  const bulle = boite.querySelector(".bulle");
+  const montrer = el => {
+    const p = pts[+el.dataset.i];
+    bulle.innerHTML = `<b>${VERSIONS[p.k].nom} · ${p.grp}</b><br>Plus claire : ${p.g.clarte}/${p.g.duels}<br>Plus utile : ${p.g.utilite}/${p.g.duels}<br>Infos perdues : ${p.g.perdues_pct} %`;
+    bulle.hidden = false;
+    const r = boite.getBoundingClientRect(), m = el.querySelector(".marque").getBoundingClientRect();
+    let left = m.left - r.left + 14, top = m.top - r.top - 10;
+    if (left + 240 > r.width) left = m.left - r.left - 250;
+    bulle.style.left = Math.max(0, left) + "px"; bulle.style.top = Math.max(0, top) + "px";
+  };
+  boite.querySelectorAll(".point").forEach(el => {
+    el.addEventListener("mouseenter", () => montrer(el)); el.addEventListener("focus", () => montrer(el));
+    el.addEventListener("mouseleave", () => bulle.hidden = true); el.addEventListener("blur", () => bulle.hidden = true);
+  });
+  const ico = (grp, c) => grp === "expliquer"
+    ? `<svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="${c}"/></svg>`
+    : `<svg width="14" height="14" aria-hidden="true"><rect x="1" y="1" width="12" height="12" rx="2" fill="${c}"/></svg>`;
+  document.getElementById("legende").innerHTML =
+    Object.entries(VERSIONS).map(([k, v]) => `<span>${ico("expliquer", v.couleur)}${v.nom}</span>`).join("") +
+    `<span>${ico("expliquer", "var(--encre-3)")}expliquer</span><span>${ico("faire", "var(--encre-3)")}agir</span>`;
+
+  // C : mesures
+  const lignesMesures = [
+    ["Mots par réponse", "medianes", "mots", null],
+    ["Mots par phrase", "medianes", "mots_par_phrase", "bas"],
+    ["Phrase la plus longue (mots)", "medianes", "phrase_max", "bas"],
+    ["Lisibilité Kandel-Moles", "medianes", "kandel_moles", "haut", "plus haut = plus facile"],
+    ["Phrases de plus de 25 mots", "totaux", "phrases_plus_25", "bas", "total sur 10 réponses"],
+    ["Formules creuses", "totaux", "formules_creuses", "bas", "« il est important de », « afin de »…"],
+    ["Tournures passives", "totaux", "passifs", "bas", "estimation"],
+  ];
+  const cles = Object.keys(COND);
+  let t = `<table><thead><tr><th>Mesure</th>${cles.map(c => `<th>${c === "sans" ? "" : `<span class="pastille" style="background:${VERSIONS[c].couleur}"></span>`}${COND[c]}</th>`).join("")}</tr></thead><tbody>`;
+  for (const [lib, bloc, cle, sens, note] of lignesMesures) {
+    const vals = cles.map(c => M.conditions[c][bloc][cle]);
+    const best = sens === "bas" ? Math.min(...vals) : sens === "haut" ? Math.max(...vals) : null;
+    t += `<tr><td>${lib}${note ? `<small>${note}</small>` : ""}</td>${vals.map(v => `<td class="${v === best ? "mieux" : ""}">${nf(v)}</td>`).join("")}</tr>`;
+  }
+  t += `<tr><td>Infos de la réponse sans règle perdues<small>selon le juge</small></td><td>—</td>${["v1", "v2", "v3"].map(k => `<td>${M.variantes[k].tout.perdues_pct} %</td>`).join("")}</tr>`;
+  document.getElementById("mesures").innerHTML = t + "</tbody></table>";
+
+  // D : explorateur
+  const sel = document.getElementById("choix-question");
+  sel.innerHTML = lignes.map((l, i) => `<option value="${i}">${esc(l.type === "explication" ? "Expliquer" : "Agir")} · ${esc(l.q)}</option>`).join("");
+  let version = "v3";
+  const onglets = document.getElementById("onglets");
+  onglets.innerHTML = ["v1", "v2", "v3"].map(k => `<button type="button" data-v="${k}" aria-pressed="${k === version}">${VERSIONS[k].nom}</button>`).join("");
+  const tete = (c, m) => `<strong>${COND[c]}</strong><span class="mesures">${m.mots} mots · ${nf(m.mots_par_phrase)} mots/phrase · ${m.phrases_plus_25} phrase(s) &gt; 25 mots</span>`;
+  const md = s => window.marked ? marked.parse(s) : `<pre>${esc(s)}</pre>`;
+  const gagnant = (duels, crit) => {
+    const a = duels.filter(d => d[crit] === "avec").length, s = duels.filter(d => d[crit] === "sans").length;
+    return a === 2 ? `${VERSIONS[version].nom}, dans les deux ordres` : s === 2 ? "Sans règle, dans les deux ordres" : "partagé selon l'ordre";
+  };
+  const afficher = () => {
+    const l = lignes[+sel.value], j = l.juge[version];
+    document.getElementById("question").innerHTML = `<small>${l.type === "explication" ? "Expliquer" : "Agir · " + esc(l.type)}</small>« ${esc(l.q)} »`;
+    document.getElementById("tete-sans").innerHTML = tete("sans", l.reponses.sans.mesures);
+    document.getElementById("tete-avec").innerHTML = tete(version, l.reponses[version].mesures);
+    document.getElementById("texte-sans").innerHTML = md(l.reponses.sans.texte);
+    document.getElementById("texte-avec").innerHTML = md(l.reponses[version].texte);
+    document.getElementById("texte-sans").scrollTop = 0; document.getElementById("texte-avec").scrollTop = 0;
+    document.getElementById("avis").innerHTML = `
+      <div class="ligne"><span><b>Plus claire</b>${gagnant(j.duels, "clarte")}</span><span><b>Plus utile</b>${gagnant(j.duels, "utilite")}</span>
+      <span><b>Infos perdues</b>${j.infos.manquantes.length} sur ${j.infos.infos_reference}</span><span><b>Infos en plus</b>${j.infos.en_plus.length}</span></div>
+      <p><b style="font-family:var(--f-mono);font-weight:500;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--encre-2)">Avis du juge</b> <span style="font-size:13px;color:var(--encre-3)">(A = sans règle, B = ${VERSIONS[version].nom.toLowerCase()})</span><br><q>${esc(j.duels[0].raison)}</q></p>
+      ${j.infos.manquantes.length ? `<details><summary>Voir les informations absentes de la ${VERSIONS[version].nom.toLowerCase()}</summary><ul>${j.infos.manquantes.map(x => `<li>${esc(x)}</li>`).join("")}</ul></details>` : ""}`;
+  };
+  sel.addEventListener("change", afficher);
+  onglets.addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    version = b.dataset.v;
+    onglets.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b));
+    afficher();
+  });
+  sel.value = String(Math.max(0, lignes.findIndex(l => l.id === "disque")));
+  afficher();
+})();
+</script>

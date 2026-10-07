@@ -1,0 +1,47 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "B se lit plus facilement grâce à un déroulé linéaire du diagnostic au nettoyage, à l'explication du « pourquoi » (écart entre du et df, danger des volumes) et à une étape de vérification finale, mais A apporte davantage d'outils concrets : recherche des gros fichiers avec find, commande pour localiser l'épuisement d'inodes, révisions snap, caches utilisateur, agrandissement LVM et offre d'analyser la sortie de df et du."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "A est plus claire grâce à une progression linéaire où chaque commande est expliquée (par exemple pourquoi `du` et `df` divergent), tandis que B est plus complète et donc plus utile : recherche des gros fichiers avec `find`, commande pour localiser l'épuisement d'inodes, snap, `journalctl --disk-usage`, extension LVM et proposition d'analyser les sorties, au prix d'une présentation plus dense."
+  }
+ ],
+ "infos": {
+  "infos_reference": 26,
+  "manquantes": [
+   "Rechercher les plus gros fichiers avec find / -xdev -type f -size +500M -exec ls -lh {} +",
+   "Mesurer d'abord l'espace des journaux avec journalctl --disk-usage, et l'alternative --vacuum-time=7d",
+   "Lister les logs par taille avec ls -lhS /var/log",
+   "Nettoyer les anciennes révisions Snap (snap list --all, puis snap remove <nom> --revision=<n>)",
+   "Nettoyer la corbeille et les caches utilisateurs (~/.cache, ~/.local/share/Trash)",
+   "Vérifier à la main les vieux dumps, archives et backups avant de les supprimer",
+   "Commande pour localiser le dossier saturé en inodes (find / -xdev -type f | cut -d/ -f1-3 | sort | uniq -c | sort -rn | head)",
+   "Ne pas supprimer au hasard dans /usr et /lib (seuls /var/lib, /etc et /boot sont cités)",
+   "Éviter rm -rf avec des variables ou des jokers sans vérifier le chemin avec ls d'abord",
+   "Si le disque est trop plein pour travailler, libérer d'abord quelques centaines de Mo (cache apt, vieux logs compressés)",
+   "Agrandir le disque via LVM (lvextend -r) ou par extension du volume chez l'hébergeur"
+  ],
+  "en_plus": [
+   "Les premières étapes (diagnostic) ne modifient rien sur le système",
+   "Indice des inodes épuisés : Use% est bas mais l'erreur persiste",
+   "Remplacer / par le point de montage concerné dans la commande du",
+   "Explication : avec un fichier supprimé encore ouvert, du ne voit rien alors que df affiche une partition pleine",
+   "Exemple concret de redémarrage : sudo systemctl restart nom-du-service",
+   "Lire la liste proposée par apt autoremove et docker prune avant de confirmer",
+   "Vérifier le résultat avec df -h et viser moins de 85 % d'occupation"
+  ]
+ }
+}

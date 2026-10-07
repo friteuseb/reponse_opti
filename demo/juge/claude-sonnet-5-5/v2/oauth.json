@@ -1,0 +1,51 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "sans",
+   "utilite": "avec",
+   "raison": "A explique le principe de façon plus concise et accessible, avec les avantages et les limites pour l'utilisateur, tandis que B est plus dense mais plus complet et plus précis (nonce, PKCE détaillé, contenu et validation du jeton, variante Google Identity Services, révocation), donc plus utile pour bien comprendre et mettre en œuvre."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "sans",
+   "utilite": "avec",
+   "raison": "B explique le mécanisme de façon plus accessible et progressive, avec des acteurs, des étapes, les raisons de la sécurité, ainsi que les avantages et les limites, tandis que A, plus dense et technique, apporte davantage d'informations exactes et actionnables : paramètres précis, PKCE et nonce, validation détaillée du JWT, pièges de liaison de comptes et variante GIS."
+  }
+ ],
+ "infos": {
+  "infos_reference": 20,
+  "manquantes": [
+   "La connexion chez Google peut inclure la double authentification",
+   "Google peut aussi renvoyer un refresh token",
+   "Le code d'autorisation est à usage unique et de courte durée",
+   "Avantages : inscription rapide, pas de mot de passe supplémentaire à retenir, sécurité déléguée à Google",
+   "Limites : dépendance à Google (perte d'accès si le compte est suspendu), partage de données personnelles, suivi potentiel des usages"
+  ],
+  "en_plus": [
+   "Configurer l'écran de consentement OAuth et créer un identifiant de type « Application Web »",
+   "Garder le client_secret côté serveur, ne jamais l'envoyer au navigateur",
+   "Générer un nonce et l'utiliser contre le rejeu de jeton, avec vérification du nonce dans le jeton",
+   "Paramètres détaillés : response_type=code, code_challenge, code_challenge_method=S256, code_verifier envoyé lors de l'échange",
+   "URL des endpoints Google : autorisation (accounts.google.com/o/oauth2/v2/auth) et token (oauth2.googleapis.com/token)",
+   "Le site compare le state reçu à celui stocké et rejette la requête s'ils diffèrent",
+   "Détail des claims du JWT : iss, aud, sub, exp, nonce, email, email_verified, name, picture",
+   "Vérifier la signature avec les clés publiques JWKS de Google (googleapis.com/oauth2/v3/certs) et vérifier que iss vaut https://accounts.google.com",
+   "Utiliser une bibliothèque reconnue plutôt que d'écrire sa propre validation JWT",
+   "Vérifier email_verified avant de faire confiance à l'adresse",
+   "URI de redirection exactes, en HTTPS, sans jokers",
+   "Utiliser PKCE même avec un client confidentiel",
+   "Demander le minimum de scopes",
+   "Ne pas lier automatiquement un compte Google à un compte existant du même e-mail sans confirmation (risque de prise de compte)",
+   "Cookie de session HttpOnly et Secure",
+   "Variante Google Identity Services / One Tap : jeton d'identité (credential) transmis directement au JavaScript, sans code ni client_secret, et sans jeton d'accès",
+   "Révocation de l'accès par l'utilisateur depuis son compte Google ; la session du site persiste jusqu'à expiration et le consentement est redemandé ensuite"
+  ]
+ }
+}

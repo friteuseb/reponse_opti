@@ -1,0 +1,49 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "avec",
+   "utilite": "avec",
+   "raison": "B suit une procédure numérotée de bout en bout, de la copie du fichier par scp jusqu'à la vérification. Elle ajoute aussi des précisions concrètes absentes de A : dumps compressés en .gz, limite de -j avec le format plain, danger de --clean, tableau des messages d'erreur réels et risque d'une base incomplète sans ON_ERROR_STOP. Ces éléments la rendent plus sûre et plus directement actionnable."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "avec",
+   "utilite": "avec",
+   "raison": "A suit une procédure linéaire complète, de la copie du fichier à la vérification, et intègre des garde-fous concrets (ON_ERROR_STOP par défaut, avertissement sur --clean, cas des fichiers .gz, tableau erreur/cause/action), alors que B, aussi complet, présente ces options sans mise en garde et de façon un peu plus dispersée."
+  }
+ ],
+ "infos": {
+  "infos_reference": 24,
+  "manquantes": [
+   "Commandes d'installation de PostgreSQL sur Debian/Ubuntu (apt install postgresql) et vérification du service (systemctl status postgresql)",
+   "Possibilité de créer les rôles manuellement avec CREATE ROLE ... WITH LOGIN PASSWORD",
+   "Option --no-privileges pour ignorer les GRANT/REVOKE",
+   "Option -1 pour exécuter la restauration dans une seule transaction",
+   "Option --if-exists associée à --clean",
+   "Authentification refusée : vérifier pg_hba.conf ou ajouter -h localhost pour passer par TCP",
+   "Restauration depuis une machine distante avec -h adresse_ip -p 5432",
+   "Mention explicite du format tar comme format restaurable avec pg_restore"
+  ],
+  "en_plus": [
+   "Copier le fichier de sauvegarde sur le nouveau serveur avec scp",
+   "Restaurer un dump SQL compressé .gz via gunzip -c ... | psql",
+   "L'option -j ne fonctionne pas avec le format plain",
+   "Mise en garde : ne pas utiliser --clean sur une base contenant des données utiles",
+   "Avec -C, sauter l'étape de création manuelle de la base",
+   "Utiliser pg_dumpall --globals-only, qui exporte aussi les tablespaces",
+   "Mettre à jour les statistiques avec vacuumdb --analyze-only",
+   "Comparer le nombre de lignes avec celui de l'ancien serveur",
+   "Message exact 'unsupported version in file header' en cas de pg_restore trop ancien",
+   "Erreur 'permission denied to create extension' : restaurer avec le superutilisateur postgres",
+   "Sans ON_ERROR_STOP=1, psql continue après une erreur et peut produire une base incomplète sans alerte claire",
+   "Installer le paquet contrib pour les extensions"
+  ]
+ }
+}

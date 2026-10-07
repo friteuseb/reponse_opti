@@ -1,2 +1,11 @@
 .claude-flow/
 .claude/
+demo/fragment.html
+demo/gen.log
+demo/__pycache__/
+# Volet modèle local inachevé
+demo/reponses/qwen3.8_27b/
+.swarm/
+ruvector.db
+*.rvf
+*.rvf.lock

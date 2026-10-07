@@ -1,0 +1,47 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "sans",
+   "utilite": "avec",
+   "raison": "A est plus concise et va droit au but. B est plus complète et plus sûre : elle explique la différence entre clé privée et clé publique, ajoute ssh-agent, KbdInteractiveAuthentication, la vérification par sshd -t, le test de refus du mot de passe, SELinux et la sauvegarde de la clé, malgré l'absence de mkdir dans sa variante PowerShell."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "sans",
+   "utilite": "avec",
+   "raison": "B est plus concise et plus facile à parcourir pour un débutant, tandis que A est plus complète et plus sûre : elle ajoute KbdInteractiveAuthentication, la vérification par sshd -t, la recherche des surcharges avec grep, le test de refus du mot de passe, ssh-agent, SELinux et la sauvegarde, malgré une variante PowerShell sans mkdir."
+  }
+ ],
+ "infos": {
+  "infos_reference": 21,
+  "manquantes": [
+   "Création du dossier ~/.ssh (mkdir -p ~/.ssh) dans la variante Windows PowerShell : la commande proposée échoue si le dossier n'existe pas encore sur le serveur"
+  ],
+  "en_plus": [
+   "Tableau expliquant le rôle de chaque fichier (clé privée id_ed25519 qui reste sur le client, clé publique id_ed25519.pub qui va sur le serveur)",
+   "Mise en garde : ne jamais partager la clé privée",
+   "Option ssh-copy-id -i pour cibler une clé précise",
+   "Précision : le serveur demande le mot de passe une dernière fois lors de la copie",
+   "Charger la clé dans ssh-agent (eval \"$(ssh-agent -s)\" puis ssh-add) pour ne pas ressaisir la passphrase",
+   "Désactiver aussi KbdInteractiveAuthentication no",
+   "Commande grep -r \"PasswordAuthentication\" /etc/ssh/ pour repérer les surcharges",
+   "Vérifier la syntaxe de la configuration avec sudo sshd -t avant de recharger",
+   "Utiliser systemctl reload plutôt que restart",
+   "Vérifier le refus du mot de passe avec ssh -o PubkeyAuthentication=no (réponse attendue : Permission denied (publickey))",
+   "Permission chmod go-w ~ sur le dossier personnel",
+   "Option -vvv pour un diagnostic plus détaillé",
+   "Journal /var/log/secure selon la distribution, et journalctl -n 50",
+   "SELinux : restaurer les contextes avec restorecon -R ~/.ssh",
+   "Forcer la bonne clé avec ssh -i si le client en possède plusieurs",
+   "Sauvegarder la clé privée dans un endroit sûr (gestionnaire de mots de passe)",
+   "Prévoir un accès de secours (console du fournisseur) en cas de perte de la clé"
+  ]
+ }
+}

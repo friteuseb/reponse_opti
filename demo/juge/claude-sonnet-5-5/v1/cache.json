@@ -1,0 +1,40 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "avec",
+   "utilite": "avec",
+   "raison": "B explique le « pourquoi » de façon plus directe et concrète, avec un tableau de latences chiffré, un processus hit/miss pas à pas et un exemple de taux de hit, tandis que A, plus long et plus dispersé (exemples, blague, résumé), est certes plus complet en contexte mais moins percutant pour comprendre l'accélération."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "sans",
+   "utilite": "sans",
+   "raison": "B rend la notion accessible à un débutant grâce à l'analogie de la cuisine, et elle couvre plus de raisons (réduction de charge, principe de localité) et d'exemples concrets (navigateur, CDN, Redis), alors que A, exacte et chiffrée avec son tableau de latences, reste plus sèche et moins complète."
+  }
+ ],
+ "infos": {
+  "infos_reference": 12,
+  "manquantes": [
+   "Analogie du sel gardé sur le plan de travail plutôt qu'à la cave",
+   "Le cache réduit la charge sur la base de données ou le serveur et aide à supporter beaucoup d'utilisateurs",
+   "Principe de localité : la localité spatiale (données voisines) et la notion formelle de localité temporelle",
+   "Exemples de caches à différents niveaux : caches CPU L1/L2/L3, cache du navigateur (images, CSS, JS), CDN, Redis/Memcached, cache disque du système d'exploitation",
+   "Complexité de l'invalidation de cache (citation sur les deux choses difficiles en informatique)",
+   "Compromis du cache : consommation de mémoire supplémentaire et gestion de la fraîcheur des données"
+  ],
+  "en_plus": [
+   "Tableau des ordres de grandeur de latence (L1 1 ns, RAM 100 ns, SSD 100 µs, base de données via réseau 1-10 ms, API distante 50-500 ms)",
+   "Une lecture en RAM est 10 000 à 100 000 fois plus rapide qu'une requête de base de données via le réseau",
+   "Exemple chiffré : avec 95 % de cache hits, seules 5 % des lectures atteignent la source lente",
+   "Déroulé détaillé en étapes du fonctionnement (demande, recherche dans le cache, hit ou miss, copie dans le cache puis renvoi)",
+   "Conseil d'invalider l'entrée du cache à chaque modification de la source"
+  ]
+ }
+}

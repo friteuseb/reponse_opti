@@ -1,0 +1,55 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "sans",
+   "utilite": "avec",
+   "raison": "A est plus concise et plus facile à parcourir. B couvre davantage de cas pratiques : copie du fichier, globals et tablespaces, dumps compressés, incompatibilité entre --jobs et --single-transaction, configuration à reporter et test de bascule. B est donc plus complète et plus actionnable pour une vraie migration."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "sans",
+   "utilite": "avec",
+   "raison": "B est plus concise et se lit plus facilement, mais A est plus complète et plus précise : elle couvre les tablespaces, les fichiers de configuration, l'incompatibilité entre --jobs et --single-transaction et les limites de --jobs selon le format, ce qui la rend plus utile pour agir sans erreur."
+  }
+ ],
+ "infos": {
+  "infos_reference": 25,
+  "manquantes": [
+   "Commandes concrètes d'installation sous Debian/Ubuntu (apt install postgresql) et de vérification du service (systemctl status postgresql)",
+   "Alternative SQL pour créer la base : CREATE DATABASE ma_base OWNER mon_user;",
+   "Option -v (mode verbeux) de pg_restore",
+   "Option --no-privileges pour ignorer les GRANT/REVOKE",
+   "Dépannage d'une authentification refusée : vérifier pg_hba.conf ou ajouter -h localhost pour passer par TCP"
+  ],
+  "en_plus": [
+   "Copier le fichier de sauvegarde sur le serveur cible avec scp ou rsync",
+   "Tableau de correspondance entre les options pg_dump (-Fp, -Fc, -Fd, -Ft) et l'outil de restauration",
+   "pg_restore --list pour lister le contenu d'un dump non texte",
+   "pg_dump ne sauvegarde pas non plus les tablespaces (export avec pg_dumpall --globals-only)",
+   "Créer les répertoires des tablespaces, avec le propriétaire postgres, avant d'importer globals.sql",
+   "Option --single-transaction avec psql pour tout annuler en cas d'erreur",
+   "Restauration d'un dump SQL compressé via gunzip -c | psql",
+   "Option --exit-on-error de pg_restore",
+   "--jobs ne fonctionne qu'avec les formats custom et directory, et sa valeur se règle sur le nombre de cœurs",
+   "--jobs est incompatible avec --single-transaction",
+   "Inutile de créer la base avec createdb si l'on utilise pg_restore --create",
+   "Mise en garde : ne pas utiliser --clean --if-exists sur une base de production",
+   "Restauration sélective d'un schéma ou d'une table avec -n / -t",
+   "Gestion du mot de passe via PGPASSWORD ou ~/.pgpass (permissions 0600)",
+   "Extraire le SQL d'un dump sans l'exécuter : pg_restore -f sortie.sql",
+   "Lister les tables de tous les schémas avec \\dt *.*",
+   "Recalcul des statistiques avec vacuumdb --analyze-only --jobs 4",
+   "Avant PostgreSQL 18, pg_dump n'inclut pas les statistiques du planificateur",
+   "pg_dump ne sauvegarde pas postgresql.conf ni pg_hba.conf : reporter les réglages à la main",
+   "Recharger la configuration avec systemctl reload postgresql",
+   "Tester la connexion de l'application avant de basculer le trafic"
+  ]
+ }
+}

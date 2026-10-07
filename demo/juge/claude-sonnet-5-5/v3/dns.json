@@ -1,0 +1,41 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "B suit un fil linéaire, concis et sans digression qui se lit plus facilement, tandis que A, plus long et chargé (tableau des enregistrements notamment), apporte davantage d'éléments utiles à la compréhension : fichier hosts, lecture du nom de droite à gauche, schéma récapitulatif, étape de connexion et pistes d'approfondissement."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "A est plus concise et se lit d'une traite sans digression, tandis que B est plus complète et donc plus utile pour comprendre (fichier hosts, résolveur récursif, schéma, enchaînement TCP/TLS), au prix d'ajouts comme le tableau des types d'enregistrements qui alourdissent la lecture."
+  }
+ ],
+ "infos": {
+  "infos_reference": 20,
+  "manquantes": [
+   "Le fichier local hosts est consulté et peut associer manuellement des noms à des IP",
+   "Le nom de domaine se lit hiérarchiquement de droite à gauche",
+   "Il existe 13 groupes de serveurs racine dans le monde",
+   "Après la résolution, le navigateur établit une connexion TCP, puis TLS pour HTTPS, et envoie la requête HTTP",
+   "Types d'enregistrements courants : A (IPv4), AAAA (IPv6), CNAME (alias), MX (messagerie), NS (serveurs faisant autorité), TXT (texte, SPF, vérifications)",
+   "Le DNS est un système hiérarchique et distribué où aucun serveur ne connaît tout",
+   "Les caches à chaque niveau rendent la résolution généralement quasi instantanée",
+   "Le DNS classique utilise principalement le protocole UDP",
+   "Pistes d'approfondissement : DNSSEC pour la sécurité, et les commandes nslookup ou dig pour tester la résolution"
+  ],
+  "en_plus": [
+   "Valeurs typiques du TTL : entre 300 s et 86 400 s",
+   "Le cache retarde la prise en compte des modifications d'enregistrements : certains utilisateurs voient l'ancienne adresse jusqu'à l'expiration du TTL",
+   "Les requêtes DNS classiques circulant en clair, le résolveur et le réseau local peuvent voir les noms de domaine consultés"
+  ]
+ }
+}

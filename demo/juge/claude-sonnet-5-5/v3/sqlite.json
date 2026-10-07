@@ -1,0 +1,44 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "avec",
+   "utilite": "avec",
+   "raison": "B présente une comparaison plus lisible grâce à son tableau et à ses critères explicites, et elle est plus exacte et plus actionnable : elle met en garde contre la copie du fichier `.db` à chaud et contre l'usage d'un partage réseau, là où A laisse entendre qu'une simple copie de fichier suffit pour sauvegarder, même si A ajoute des points utiles comme les tables STRICT et les limites d'ALTER TABLE."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "avec",
+   "utilite": "avec",
+   "raison": "A donne sa recommandation dès le début, propose un tableau comparatif facile à parcourir et signale des dangers concrets (copie du fichier avec cp pendant l'exécution, partage réseau), là où B affirme à tort que la sauvegarde se résume à copier un fichier, même si B apporte des points utiles comme les tables STRICT et les limites d'ALTER TABLE."
+  }
+ ],
+ "infos": {
+  "infos_reference": 18,
+  "manquantes": [
+   "Bonnes performances en lecture avec SQLite grâce à l'absence de latence réseau (tout est local)",
+   "Typage souple de SQLite : utiliser des tables STRICT si possible",
+   "ALTER TABLE plus limité dans SQLite qu'en PostgreSQL, ce qui complique les migrations de schéma"
+  ],
+  "en_plus": [
+   "SQLite tient des écritures jusqu'à quelques centaines par seconde, et un SSD peut en absorber plusieurs milliers",
+   "Ne pas copier le fichier .db avec cp pendant que l'application tourne, sous peine de copie corrompue",
+   "Ne pas placer le fichier SQLite sur un partage réseau (NFS, SMB), car le verrouillage y est peu fiable et la base peut se corrompre",
+   "Garder les transactions d'écriture courtes",
+   "SQLite ignore les clés étrangères par défaut",
+   "En mode WAL, les lectures ne bloquent plus les écritures",
+   "busy_timeout fait attendre une écriture 5 s au lieu d'échouer",
+   "SQLite n'a pas de droits par utilisateur : le fichier appartient à l'application",
+   "Choisir PostgreSQL si l'hébergeur le propose en version managée, pour éviter de gérer les sauvegardes",
+   "Outils de sauvegarde PostgreSQL : pg_dump, archivage WAL, outils managés",
+   "Coût d'exploitation de PostgreSQL : sauvegardes, mises à jour, supervision",
+   "Une écriture qui dure plusieurs secondes est un critère en faveur de PostgreSQL"
+  ]
+ }
+}

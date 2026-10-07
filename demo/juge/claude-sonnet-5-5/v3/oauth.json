@@ -1,0 +1,49 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "B est plus court, linéaire et facile à lire pour un non-spécialiste, mais A est plus complet et précis : il couvre le consentement, le paramètre `state`, PKCE, la vérification détaillée du jeton, l'enregistrement du `redirect_uri` et les étapes côté développeur, ce qui aide davantage à comprendre et à agir."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "A est plus concise et plus facile à suivre pour une question générale, tandis que B est plus complète et plus précise (acteurs, state/PKCE, vérification du jeton, côté développeur, limites liées à la vie privée), quitte à employer davantage de jargon."
+  }
+ ],
+ "infos": {
+  "infos_reference": 26,
+  "manquantes": [
+   "Rôles des acteurs : client/Relying Party et fournisseur d'identité (IdP)",
+   "Paramètre scope dans la redirection (ex. openid email profile)",
+   "Paramètre state contre les attaques CSRF",
+   "Authentification sur le domaine de Google seulement si l'utilisateur n'est pas déjà connecté, éventuellement avec double authentification",
+   "Google renvoie aussi un access token pour appeler les API Google",
+   "Google renvoie parfois un refresh token",
+   "Le site vérifie aussi l'émetteur, l'audience et l'expiration de l'ID token (pas seulement la signature)",
+   "L'ID token est un JWT",
+   "Le site crée ou retrouve le compte utilisateur, puis ouvre une session classique par cookie",
+   "Le code d'autorisation est de courte durée",
+   "PKCE protège contre l'interception du code (applications mobiles, SPA)",
+   "Le redirect_uri doit être préenregistré auprès de Google pour empêcher les redirections malveillantes",
+   "Côté développeur : créer un projet dans la Google Cloud Console et des identifiants OAuth (client ID et secret)",
+   "Côté développeur : déclarer les URI de redirection autorisées",
+   "Côté développeur : intégrer Google Identity Services ou une bibliothèque OAuth/OIDC",
+   "Avantages : inscription rapide, pas de mot de passe supplémentaire, sécurité déléguée à Google",
+   "Limites : partage de données personnelles et suivi potentiel des usages par Google"
+  ],
+  "en_plus": [
+   "Le code transite par le navigateur mais est inutile sans le secret client, connu du seul serveur, donc un pirate qui l'intercepte ne peut pas obtenir de jeton",
+   "Beaucoup de sites proposent une seconde méthode de connexion pour limiter la dépendance à Google",
+   "L'identifiant sub reste stable alors que l'e-mail peut changer"
+  ]
+ }
+}

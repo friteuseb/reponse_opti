@@ -1,0 +1,46 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "sans",
+   "utilite": "avec",
+   "raison": "A se lit plus facilement grâce à son analogie du livre, sa progression simple et son tableau récapitulatif, mais B aide davantage à agir avec des pièges concrets (fonction sur la colonne, joker en tête, chargement en masse), l'index couvrant et une démarche de mesure précise avec les vues système de PostgreSQL et SQL Server."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "sans",
+   "utilite": "avec",
+   "raison": "B se lit plus facilement grâce à l'analogie du livre, aux exemples SQL concrets et au tableau récapitulatif, tandis que A est plus utile pour agir : il traite des pièges précis (fonction appliquée à la colonne, joker en tête, chargement en masse) et propose une démarche de mesure étape par étape avec les vues système à consulter."
+  }
+ ],
+ "infos": {
+  "infos_reference": 24,
+  "manquantes": [
+   "Analogie avec l'index à la fin d'un livre",
+   "Autres types d'index que le B-tree : table de hachage, index bitmap (et index bitmap comme exception pour les colonnes à faible cardinalité)",
+   "Exemple de syntaxe : CREATE INDEX idx_clients_email ON clients(email);",
+   "Pour les colonnes très volumineuses : utiliser un index spécialisé (full-text, GIN) ou indexer une version réduite (hash, préfixe)"
+  ],
+  "en_plus": [
+   "L'index stocke les valeurs triées avec un pointeur vers la ligne",
+   "Ordre de grandeur chiffré : environ 24 comparaisons au lieu de 10 millions pour 10 millions de lignes",
+   "Index couvrant : contient toutes les colonnes nécessaires, ce qui évite la lecture de la table",
+   "UNIQUE et PRIMARY KEY sont implémentés par le moteur avec un index",
+   "Coût mémoire : l'index occupe de la place dans le cache",
+   "Maintenance concrète : REINDEX, VACUUM, défragmentation selon le moteur",
+   "Chargement en masse : supprimer les index, charger, puis recréer, souvent plus rapide",
+   "Une fonction appliquée à la colonne (LOWER(nom)) empêche l'usage de l'index ; solution : index fonctionnel",
+   "LIKE avec joker en tête n'utilise pas un B-tree ; solution : index de texte intégral ou trigramme",
+   "Index composite : le moteur l'utilise seulement à partir de la première colonne (préfixe gauche)",
+   "Démarche de mesure : tester sur un environnement de test, comparer avant/après, mesurer l'effet sur les écritures",
+   "Vues de suivi nommées : pg_stat_user_indexes (PostgreSQL), sys.dm_db_index_usage_stats (SQL Server)",
+   "Seuil de sélectivité indicatif : au-delà de 10 à 20 % de la table, l'optimiseur préfère le scan complet"
+  ]
+ }
+}

@@ -1,0 +1,51 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "sans",
+   "utilite": "sans",
+   "raison": "A part de la bonne question (« qu'est-ce qui a changé il y a une semaine ? »), propose des outils accessibles à un propriétaire de site typique (GTmetrix, Query Monitor, espace hébergeur) et couvre aussi les malwares et les scripts tiers, alors que B, très précis, suppose un accès SSH, WP-CLI et MySQL que beaucoup d'utilisateurs WordPress, notamment en hébergement mutualisé, n'ont pas."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "sans",
+   "utilite": "sans",
+   "raison": "B commence par la question clé de ce qui a changé il y a une semaine, explique chaque étape en langage accessible et propose des outils adaptés à un utilisateur WordPress typique (GTmetrix, Query Monitor, WP-Optimize, Wordfence), tout en couvrant des pistes que A omet (thème, malware, changement chez l'hébergeur, admin ou site public), alors que A, très structuré et précis, suppose un accès SSH et des compétences techniques (top, df, SQL, WP-CLI) que l'utilisateur n'a probablement pas."
+  }
+ ],
+ "infos": {
+  "infos_reference": 24,
+  "manquantes": [
+   "Vérifier si un nouveau plugin ou une nouvelle fonctionnalité a été ajouté récemment",
+   "Envisager un changement chez l'hébergeur (migration, changement d'offre, serveur mutualisé surchargé)",
+   "Outils de mesure en ligne nommés : GTmetrix, PageSpeed Insights, WebPageTest",
+   "Tester plusieurs pages (accueil, article, admin) pour savoir si la lenteur est globale ou localisée",
+   "Basculer temporairement sur un thème par défaut (Twenty Twenty-Four) pour écarter le thème",
+   "Recommandation d'utiliser PHP 8.1 ou plus",
+   "Nettoyer les commentaires spam en base",
+   "Outil WP-Optimize pour nettoyer la base",
+   "Scanner le site avec Wordfence ou Sucuri pour détecter un malware, un script de minage ou du spam injecté",
+   "Utiliser un CDN (Cloudflare) pour les images et fichiers statiques",
+   "Demander le type d'hébergement (mutualisé, VPS, infogéré) et si la lenteur touche le site public, l'admin ou les deux"
+  ],
+  "en_plus": [
+   "Mesurer le TTFB via le panneau Réseau des outils de développement, en navigation privée",
+   "Vérifier les contenus ajoutés récemment (pages lourdes, images non compressées)",
+   "Emplacement du fichier de log : wp-content/debug.log, et lecture des logs PHP et du serveur web",
+   "Ne pas tester en production aux heures de pointe, car les visiteurs perdraient des fonctions",
+   "Commande WP-CLI : wp plugin deactivate --all",
+   "Surveiller le serveur avec top ou htop, y compris l'usage du swap",
+   "Contrôler l'espace disque avec df -h",
+   "Activer le slow query log de MySQL avec un seuil de 1 s",
+   "Requête SQL pour mesurer le poids des options en autoload, avec un seuil d'alerte à 1 Mo",
+   "Vérifier qu'OPcache est actif",
+   "Ajouter un cache objet (Redis ou Memcached) si le site reçoit beaucoup de trafic"
+  ]
+ }
+}

@@ -1,0 +1,49 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "sans",
+   "utilite": "avec",
+   "raison": "A est plus concise et plus accessible, et commence logiquement par ce qui a changé il y a une semaine. B est plus dense et plus technique (SSH, curl, SQL), mais plus actionnable : commandes concrètes, seuils chiffrés, avertissements de sauvegarde et de sécurité, alternatives sans SSH et recours à l'hébergeur."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "sans",
+   "utilite": "avec",
+   "raison": "B est plus aéré, plus accessible et commence logiquement par ce qui a changé, mais A est plus actionnable : commandes concrètes (curl, top, requête SQL sur l'autoload), seuils chiffrés, alternatives sans SSH et précautions sur la production."
+  }
+ ],
+ "infos": {
+  "infos_reference": 23,
+  "manquantes": [
+   "Basculer temporairement sur un thème par défaut (Twenty Twenty-Four) pour écarter le thème",
+   "Utiliser Cloudflare ou un autre CDN pour accélérer la diffusion des images et fichiers statiques",
+   "Nettoyer les commentaires de spam dans la base de données"
+  ],
+  "en_plus": [
+   "Faire une sauvegarde complète (fichiers et base) avant toute modification",
+   "Commande curl pour mesurer le TTFB et le temps total",
+   "Considérer un import massif de contenu ou de produits comme changement possible",
+   "Commandes SSH top/htop, free -h et df -h pour repérer la surcharge CPU, le manque de RAM (swap) et un disque plein",
+   "Repérer les IP avec un nombre de requêtes très élevé et bloquer les bots abusifs (pare-feu, Cloudflare, plugin de sécurité)",
+   "Onglets de Query Monitor à consulter : requêtes par composant, appels HTTP de plus de 1 s, hooks",
+   "Ne pas désactiver un plugin de paiement ou de sécurité en production",
+   "Requête SQL pour mesurer la taille des options autoload, avec un seuil d'alerte à 1 Mo",
+   "Supprimer transients et révisions via WP-CLI",
+   "Activer le slow query log de MySQL (seuil 1 s)",
+   "Ajouter un index aux grosses tables qui n'en ont pas",
+   "Vérifier qu'OPcache est activé",
+   "Installer un cache d'objets (Redis ou Memcached)",
+   "Contrôler memory_limit (256 Mo minimum) et le nombre de workers PHP-FPM",
+   "Chercher des fichiers PHP modifiés récemment dans wp-content/uploads et des administrateurs inconnus",
+   "En cas de malware, isoler le site et restaurer une sauvegarde saine",
+   "Contacter l'hébergeur avec le TTFB, la date de début et la liste des changements, et demander s'il y a un voisin bruyant sur un mutualisé"
+  ]
+ }
+}

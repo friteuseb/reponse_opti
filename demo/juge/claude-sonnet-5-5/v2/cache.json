@@ -1,0 +1,43 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "sans",
+   "utilite": "avec",
+   "raison": "A est plus accessible pour une question de débutant grâce à son analogie et à sa structure aérée, mais B explique mieux pourquoi le cache accélère, avec des ordres de grandeur exacts, un calcul du gain selon le taux de succès et des pièges concrets (éviction, stampede, démarrage à froid)."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "sans",
+   "utilite": "avec",
+   "raison": "B est plus accessible pour une question d'introduction grâce à son analogie et à sa structure aérée, mais A explique plus précisément pourquoi le cache accélère, avec des ordres de grandeur, un calcul du gain selon le taux de succès et des précautions concrètes (éviction, stampede, démarrage à froid)."
+  }
+ ],
+ "infos": {
+  "infos_reference": 12,
+  "manquantes": [
+   "Analogie du sel gardé sur le plan de travail plutôt qu'à la cave (cache rapide contre source lente)",
+   "Le cache réduit la charge sur la base de données ou le serveur, ce qui permet d'encaisser davantage d'utilisateurs",
+   "Mention de la complexité de l'invalidation de cache, illustrée par la blague « il n'y a que deux choses difficiles en informatique »"
+  ],
+  "en_plus": [
+   "Tableau d'ordres de grandeur des temps d'accès (L1 1 ns, RAM 100 ns, SSD 100 µs, réseau datacenter 0,5 ms, HDD 10 ms, intercontinental 100-150 ms)",
+   "Un cache en RAM devant un disque dur réduit l'accès d'un facteur d'environ 100 000",
+   "Formule du temps moyen d'accès en fonction du taux de succès, avec exemples chiffrés (90 % → 10,9 ms, 99 % → environ 2 ms)",
+   "Le taux de succès compte plus que la vitesse du cache (passer de 90 % à 99 % divise le temps moyen par 5)",
+   "La base de données garde elle-même en mémoire les pages de données et les plans de requêtes",
+   "Autres politiques d'éviction : LFU, FIFO et TTL",
+   "Démarrage à froid : un cache vide produit 100 % d'échecs",
+   "Cache stampede : une entrée populaire expire et des centaines de requêtes frappent la source ; un verrou ou un TTL aléatoire limite ce risque",
+   "Problème de cohérence entre plusieurs caches",
+   "Conseil de ne pas mettre en cache des données qui changent à chaque requête, car le cache ajoute alors un coût sans gain",
+   "Exemple concret de TTL de 60 s"
+  ]
+ }
+}

@@ -1,0 +1,50 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "sans",
+   "utilite": "avec",
+   "raison": "A est plus compacte et plus facile à parcourir grâce à son tableau des coupables habituels, tandis que B, plus longue, apporte plus de détails actionnables et de sécurité (troncature via /proc, vérification d'autoremove, réserve ext4, contrôle final avec systemctl --failed), malgré un petit risque d'erreur sur le filtre « désactivé » de snap et une piste d'inodes moins concrète que celle de A."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "sans",
+   "utilite": "avec",
+   "raison": "B est plus concise et se parcourt plus vite grâce à son tableau des coupables habituels, tandis que A est plus complète et plus actionnable (étapes numérotées, troncature via /proc, vérification finale avec systemctl --failed, réserve ext4), malgré quelques défauts : le grep « désactivé » sur la sortie de snap, qui est en anglais, et un renvoi d'étape erroné pour les inodes."
+  }
+ ],
+ "infos": {
+  "infos_reference": 25,
+  "manquantes": [
+   "Commande pour localiser le dossier saturé en inodes : find / -xdev -type f | cut -d/ -f1-3 | sort | uniq -c | sort -rn | head",
+   "Ne jamais supprimer au hasard dans /usr, /lib et /etc (seuls /boot et /var/lib sont mentionnés)",
+   "Vider la corbeille utilisateur (~/.local/share/Trash)",
+   "Les vieux dumps, archives et backups sont des coupables fréquents, à vérifier à la main avant suppression",
+   "Vérifier la taille des logs avec ls -lhS /var/log, et supprimer aussi les anciens logs .1"
+  ],
+  "en_plus": [
+   "Un écart entre du et df signale un fichier supprimé encore ouvert par un processus",
+   "Vider un fichier supprimé encore ouvert via son descripteur (truncate -s 0 /proc/PID/fd/FD) quand on ne peut pas redémarrer le service",
+   "Commande précise pour supprimer les .gz de plus de 30 jours (find /var/log -name '*.gz' -mtime +30 -delete)",
+   "sudo dnf autoremove pour RHEL/Fedora",
+   "Relire la liste affichée par autoremove avant de confirmer",
+   "Filtrer les révisions snap désactivées avec grep",
+   "Détail de ce que supprime docker system prune, et effet de l'option -a",
+   "Ne pas toucher à /proc, /sys et /dev (systèmes de fichiers virtuels)",
+   "Ne pas supprimer manuellement les fichiers de /boot : passer par le gestionnaire de paquets",
+   "Déplacer un fichier inconnu vers une autre partition et attendre quelques jours plutôt que le supprimer",
+   "Réduire les blocs réservés à root sur ext4 avec tune2fs -m 1 (pas sur /)",
+   "Exemple de commande lvextend avec taille (-L +10G), ou ajout d'un disque",
+   "Vérifier après nettoyage que Use% est passé sous 80 % et que les services tournent (systemctl --failed)",
+   "Redémarrer systemd-journald après avoir modifié SystemMaxUse",
+   "Vérifier aussi /root/.cache et /var/cache",
+   "Exemples d'outils de supervision (Zabbix, Prometheus, Netdata)"
+  ]
+ }
+}

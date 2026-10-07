@@ -1,0 +1,40 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "B est plus concise et directe, et signale à juste titre le risque de copier le fichier pendant les écritures. A couvre davantage de facteurs de décision utiles (tables STRICT, limites d'ALTER TABLE, accès par plusieurs outils, PaaS sans disque persistant) et propose d'affiner le conseil, malgré une formulation un peu trompeuse sur la sauvegarde par simple copie."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "A est plus concise et directe, avec une recommandation d'emblée et une mise en garde exacte sur la copie du fichier pendant les écritures, tandis que B, plus long mais plus complet (tables STRICT, limites d'ALTER TABLE, accès par plusieurs outils, offre d'affiner le conseil), aide mieux à décider malgré une formulation imprudente sur la sauvegarde par simple copie."
+  }
+ ],
+ "infos": {
+  "infos_reference": 16,
+  "manquantes": [
+   "Choisir PostgreSQL si plusieurs services ou outils (BI, scripts, etc.) doivent accéder à la base en même temps",
+   "Typage souple de SQLite : utiliser des tables STRICT si possible",
+   "ALTER TABLE est plus limité dans SQLite qu'en PostgreSQL, ce qui complique les migrations de schéma",
+   "Fonctionnalités avancées de PostgreSQL non citées : types tableaux, vues matérialisées, permissions fines par rôle",
+   "Bonnes performances en lecture de SQLite grâce à l'absence de latence réseau (tout est local)"
+  ],
+  "en_plus": [
+   "En mode WAL, SQLite traite des milliers de lectures par seconde",
+   "Le verrou d'écriture de SQLite ne dure que quelques millisecondes par écriture",
+   "Les PRAGMA doivent être exécutés à chaque ouverture de connexion",
+   "Ne pas copier le fichier de la base pendant que l'application écrit, car la copie peut être corrompue",
+   "Commande de sauvegarde concrète : sqlite3 app.db \".backup sauvegarde.db\"",
+   "Tester ses migrations sur les deux moteurs si l'on prévoit de changer"
+  ]
+ }
+}

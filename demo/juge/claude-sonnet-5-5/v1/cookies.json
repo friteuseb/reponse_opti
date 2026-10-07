@@ -1,0 +1,60 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "B est plus court et plus direct, avec une procédure numérotée facile à suivre pour un artisan. A est plus complet et plus utile : il ajoute l'option d'un site sans bandeau via des alternatives concrètes (Google Maps, Google Fonts, vidéos chargées au clic), la durée maximale des cookies, les mentions légales obligatoires, les risques encourus et une checklist."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "A est plus concise et se suit facilement grâce à sa procédure numérotée, mais B est plus complète et précise : choix par finalité, durée de 13 mois, alternatives à Google Maps et aux polices, outils selon la plateforme, pages obligatoires et risques, ce qui aide davantage l'artisan à se mettre réellement en règle."
+  }
+ ],
+ "infos": {
+  "infos_reference": 30,
+  "manquantes": [
+   "Le visiteur doit pouvoir choisir finalité par finalité (statistiques, publicité, etc.)",
+   "Le choix du visiteur doit être conservé (preuve du consentement)",
+   "Durée de vie maximale des cookies : 13 mois",
+   "Fermer le bandeau ne vaut pas consentement",
+   "Mode YouTube sans cookies (youtube-nocookie) comme alternative, à vérifier",
+   "Remplacer Google Maps par un lien ou une image cliquable",
+   "Éviter les vidéos et widgets sociaux intégrés ou les charger seulement après un clic",
+   "Héberger les polices (Google Fonts) sur son propre serveur",
+   "Les boutons de partage et flux Instagram/Facebook sont soumis au consentement",
+   "Même sans bandeau, il faut informer les visiteurs dans la politique de confidentialité",
+   "Fathom comme outil de mesure d'audience exempté",
+   "Outils WordPress : Complianz, Real Cookie Banner, CookieYes",
+   "Autres outils de bandeau : Cookiebot, Iubenda",
+   "Wix, Squarespace, Shopify et Webflow intègrent un module de cookies à activer et paramétrer",
+   "Outils de scan : Cookiebot Scanner, Webcookies, Cookieviz de la CNIL",
+   "Page Mentions légales obligatoire (identité, SIRET, adresse, contact, hébergeur)",
+   "Page Politique de confidentialité obligatoire (données collectées, finalité, durée, droits, contact)",
+   "Formulaire de contact : ne demander que le nécessaire (nom, email, message)",
+   "Formulaire de contact : ne pas garder les messages indéfiniment",
+   "Risques : la CNIL contrôle surtout les gros sites mais peut agir sur plainte, généralement par mise en demeure puis sanctions possibles",
+   "Conseil : retirer Google Analytics et Google Maps pour ne plus avoir de bandeau à gérer",
+   "Renvoi aux ressources officielles de la CNIL (cnil.fr, rubrique Cookies et traceurs)",
+   "Checklist récapitulative"
+  ],
+  "en_plus": [
+   "Scanner gratuit Cookieserve, ou demander la liste des cookies au webmaster",
+   "Retirer le pixel Facebook si on ne fait pas de publicité",
+   "Précision que Tarteaucitron est gratuit et Axeptio payant",
+   "Boutons « Tout accepter » et « Tout refuser » de même taille et de même couleur",
+   "La politique de cookies indique pour chaque cookie son nom et son éditeur",
+   "Tester en cliquant sur « Tout refuser » puis en vérifiant avec F12 qu'aucun cookie non nécessaire n'apparaît",
+   "Un bandeau décoratif qui ne bloque aucun cookie ne protège pas le site",
+   "La mention près du formulaire de contact doit indiquer qui reçoit les données"
+  ]
+ }
+}

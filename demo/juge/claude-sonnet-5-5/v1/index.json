@@ -1,0 +1,43 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "B est plus concis et concret, avec son exemple chiffré, son tableau synthétique et sa méthode en étapes, ce qui facilite la lecture. A est plus complet : il propose une analogie, explique la complexité et traite davantage de cas d'évitement (colonnes volumineuses, ordre des colonnes composites) en plus des bonnes pratiques, ce qui aide mieux à comprendre le sujet en profondeur."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "A est plus concise et directe, avec un exemple chiffré, un tableau synthétique et une méthode pas à pas, tandis que B couvre davantage de cas (colonnes volumineuses, ordre des colonnes composites, GROUP BY, types d'index) et propose une analogie et un résumé utiles pour bien comprendre."
+  }
+ ],
+ "infos": {
+  "infos_reference": 24,
+  "manquantes": [
+   "Types de structures d'index autres que le B-tree : arbre B+, table de hachage, index bitmap",
+   "Analogie avec l'index à la fin d'un livre",
+   "Un index accélère aussi les regroupements (GROUP BY)",
+   "Complexité : full table scan en O(n) contre O(log n) avec un index B-tree",
+   "Exemple de commande : CREATE INDEX idx_clients_email ON clients(email);",
+   "Éviter d'indexer les colonnes très volumineuses (textes longs, JSON, blobs) et préférer un index spécialisé (full-text, GIN) ou une version réduite (hash, préfixe)",
+   "Penser à l'ordre des colonnes dans les index composites"
+  ],
+  "en_plus": [
+   "Une fonction appliquée à la colonne (ex. : LOWER(email)) empêche l'utilisation de l'index ; solution : créer un index sur l'expression",
+   "Un index peut se fragmenter et demander une reconstruction",
+   "Un index occupe aussi de la mémoire, pas seulement du disque",
+   "Exemple chiffré : sur 10 millions de lignes, un index B-tree permet de lire 3 ou 4 pages d'index au lieu de toute la table",
+   "Un index trie les valeurs d'une ou plusieurs colonnes et pointe vers les lignes correspondantes",
+   "Seuil indicatif : au-delà de 10 à 20 % de la table lue, l'optimiseur choisit le scan complet",
+   "Méthode en étapes : repérer les requêtes lentes, lancer EXPLAIN, créer l'index seulement si le plan montre un scan complet coûteux, relancer EXPLAIN et comparer les temps"
+  ]
+ }
+}

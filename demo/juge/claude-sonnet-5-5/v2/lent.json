@@ -1,0 +1,58 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "sans",
+   "utilite": "avec",
+   "raison": "A est plus concise et plus accessible pour savoir par où commencer. B est plus longue et plus technique (SSH, WP-CLI), mais elle est plus actionnable et plus complète : sauvegarde préalable, test de /wp-login.php sans cache, commandes et requêtes concrètes, WP-Cron, vérification des checksums, tableau symptôme-cause."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "sans",
+   "utilite": "avec",
+   "raison": "B est plus court, mieux adapté à la question « par où commencer » et accessible à un non-technicien, tandis que A, plus dense, est plus actionnable : sauvegarde préalable, commandes concrètes, test de /wp-login.php sans cache, requête autoload et tableau symptôme-cause permettent d'identifier la cause plus sûrement."
+  }
+ ],
+ "infos": {
+  "infos_reference": 24,
+  "manquantes": [
+   "Tester plusieurs types de pages (accueil, article, admin) pour savoir si la lenteur est globale ou localisée",
+   "Activer WP_DEBUG_LOG pour repérer les erreurs répétées",
+   "Nettoyer les révisions d'articles et les commentaires indésirables (spam) dans la base",
+   "Outil WP-Optimize pour nettoyer la base de données",
+   "Utiliser Cloudflare ou un autre CDN pour servir les images et les fichiers statiques",
+   "Demander si la lenteur touche le site public, l'administration ou les deux"
+  ],
+  "en_plus": [
+   "Faire une sauvegarde complète (fichiers et base de données) avant toute modification",
+   "Consulter Outils > Santé du site dans l'administration WordPress",
+   "Comparer les statistiques de trafic de cette semaine avec la précédente et consulter le journal de l'hébergeur",
+   "Commande curl pour mesurer le TTFB depuis un terminal",
+   "Tester /wp-login.php, qui n'utilise pas le cache de page, pour isoler PHP, la base de données ou le serveur",
+   "Commandes SSH top, free -h et df -h, avec l'interprétation du swap et d'un disque rempli à plus de 90 %",
+   "Emplacements des journaux d'erreurs PHP (php-fpm.log, error_log)",
+   "Commandes awk et grep pour repérer les IP les plus actives et compter les appels à wp-login.php et xmlrpc.php",
+   "Contre-mesures : pare-feu applicatif, blocage de xmlrpc.php, fail2ban",
+   "Onglets précis de Query Monitor (Queries by Component, HTTP API Calls, Hooks & Actions)",
+   "Commandes WP-CLI pour désactiver les plugins et changer de thème",
+   "Commande wp db size pour mesurer la taille des tables, avec un seuil d'alerte pour les tables de plusieurs Go",
+   "Requête SQL pour mesurer le poids des options en autoload, avec un seuil de 1 Mo",
+   "wp transient delete --expired et wp db optimize",
+   "Activer le slow_query_log de MySQL",
+   "Vérifier WP-Cron (wp cron event list), le désactiver et le remplacer par une tâche cron système",
+   "Vérifier qu'OPcache est actif",
+   "Vérifier si une mise à jour a vidé le cache ou si des purges automatiques sont trop fréquentes",
+   "Activer un cache d'objet (Redis ou Memcached)",
+   "Vérifier l'intégrité des fichiers avec wp core et plugin verify-checksums",
+   "Chercher des fichiers PHP dans uploads et vérifier la liste des comptes administrateurs",
+   "Contacter l'hébergeur pour obtenir l'historique CPU/RAM sur 14 jours, les limites atteintes et les changements de configuration",
+   "Tableau récapitulatif symptôme / cause probable"
+  ]
+ }
+}

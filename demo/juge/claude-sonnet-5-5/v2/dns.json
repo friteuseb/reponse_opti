@@ -1,0 +1,49 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "sans",
+   "utilite": "avec",
+   "raison": "A se lit plus facilement grâce à son explication concise et à son schéma, tandis que B, plus dense et entaché d'une coquille (« vautorité »), apporte davantage d'informations exactes et actionnables : étapes détaillées, TTL et migration, cas particuliers, commandes dig et vidage des caches."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "sans",
+   "utilite": "avec",
+   "raison": "B se lit plus facilement grâce à l'analogie de l'annuaire, à son schéma visuel et à une progression fluide adaptée à une première explication, tandis que A, plus dense et au style haché, est plus utile car il couvre davantage (étapes numérotées détaillées, TTL et migration, CNAME, NXDOMAIN, DNSSEC) et fournit des commandes concrètes pour observer la résolution et vider les caches."
+  }
+ ],
+ "infos": {
+  "infos_reference": 19,
+  "manquantes": [
+   "Le nom de domaine se lit de droite à gauche pour descendre la hiérarchie",
+   "Il existe 13 groupes de serveurs racine dans le monde",
+   "Quad9 comme exemple de résolveur public",
+   "La commande nslookup pour tester la résolution"
+  ],
+  "en_plus": [
+   "Le résolveur local est le logiciel de l'OS qui envoie les requêtes DNS",
+   "L'adresse du résolveur récursif est fournie par DHCP ou configurée à la main",
+   "Le serveur TLD renvoie vers les serveurs de noms via des enregistrements NS",
+   "Valeurs courantes du TTL : de 300 s à 86 400 s",
+   "Une modification d'enregistrement se propage avec un délai lié au TTL ; il faut baisser le TTL au moins un TTL entier avant une migration",
+   "Le résolveur suit la chaîne CNAME jusqu'à un enregistrement A ou AAAA",
+   "Un domaine inexistant renvoie NXDOMAIN, réponse elle aussi mise en cache",
+   "Le DNS bascule en TCP si la réponse est trop grande pour un paquet UDP",
+   "Ports utilisés : 853 pour DoT et 443 pour DoH",
+   "DNSSEC : les réponses sont signées et le résolveur vérifie la signature pour détecter les falsifications",
+   "Un serveur faisant autorité peut renvoyer plusieurs IP, le client en choisit une",
+   "Commandes dig : dig nom, dig @1.1.1.1 nom A, dig +trace nom ; lecture du TTL restant dans la réponse",
+   "Commandes pour vider le cache DNS sous Windows (ipconfig /flushdns), macOS (dscacheutil + killall mDNSResponder) et Linux (resolvectl flush-caches)",
+   "Le cache du navigateur est séparé et se vide en redémarrant le navigateur",
+   "Le cache d'un résolveur tiers ne peut pas être vidé, mais 1.1.1.1 et 8.8.8.8 proposent une page de purge",
+   "Mise en garde : sauvegarder le fichier hosts avant de le modifier, une erreur pouvant rediriger un site vers une mauvaise IP"
+  ]
+ }
+}

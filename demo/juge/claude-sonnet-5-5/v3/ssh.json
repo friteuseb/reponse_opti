@@ -1,0 +1,46 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "avec",
+   "utilite": "avec",
+   "raison": "B distingue explicitement client et serveur, explique les fichiers générés et utilise des phrases courtes et un tableau de dépannage lisible. Sur le fond, B ajoute des garde-fous concrets (ne pas écraser une clé existante, vérifier la syntaxe avec `sshd -t`, recharger le service plutôt que le redémarrer, prévoir la console de l'hébergeur) et un diagnostic plus complet (`chmod go-w ~`, SELinux, `ssh -i`), quand A n'apporte en plus que la commande PowerShell et l'option de port."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "egal",
+   "utilite": "avec",
+   "raison": "Les deux réponses sont bien structurées et faciles à suivre, mais A est plus complète et plus sûre : elle prévient l'écrasement d'une clé existante, vérifie la syntaxe avec `sshd -t` avant le rechargement et propose un tableau de dépannage plus riche (permissions du dossier personnel, SELinux, choix de la clé), alors que B apporte surtout l'option de port, une variante PowerShell et `PermitRootLogin`."
+  }
+ ],
+ "infos": {
+  "infos_reference": 21,
+  "manquantes": [
+   "Alternative RSA 4096 (ssh-keygen -t rsa -b 4096) pour les serveurs anciens ne supportant pas Ed25519",
+   "Option -p de ssh-copy-id pour un port SSH non standard",
+   "Commande spécifique pour Windows PowerShell (type $env:USERPROFILE\\.ssh\\id_ed25519.pub | ssh ...)",
+   "Directive PermitRootLogin prohibit-password dans sshd_config"
+  ],
+  "en_plus": [
+   "Ne pas écraser une clé existante : choisir un autre nom de fichier si une clé existe déjà",
+   "Explication des deux fichiers générés : id_ed25519 (clé privée) et id_ed25519.pub (clé publique)",
+   "Mise en garde : ne jamais partager la clé privée, qui donne accès à tous les serveurs acceptant la clé publique",
+   "ssh-copy-id demande le mot de passe une dernière fois, puis ajoute la clé à ~/.ssh/authorized_keys",
+   "Utiliser un agent SSH (ssh-add) pour éviter de ressaisir la passphrase à chaque connexion",
+   "Intérêt de désactiver le mot de passe : bloquer les attaques par force brute",
+   "En cas de perte d'accès, il faut une console physique ou celle de l'hébergeur",
+   "Tester la syntaxe de la configuration avec sudo sshd -t avant de recharger",
+   "Utiliser systemctl reload plutôt que restart",
+   "Dépannage : dossier personnel ouvert en écriture au groupe, à corriger avec chmod go-w ~",
+   "Dépannage : forcer la clé utilisée avec ssh -i ~/.ssh/id_ed25519",
+   "Dépannage : vérifier que la clé publique est bien copiée, sur une seule ligne, en comparant authorized_keys et id_ed25519.pub",
+   "Dépannage SELinux (RHEL, Fedora) : restorecon -R ~/.ssh"
+  ]
+ }
+}

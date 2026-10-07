@@ -1,0 +1,52 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "B se lit plus facilement grâce à sa progression en étapes numérotées, ses phrases courtes et ses instructions concrètes (F12, test en navigation privée), tandis que A est un peu plus utile parce qu'il couvre davantage de points pratiques : tableau des traceurs courants, polices Google à héberger soi-même, checklist récapitulative, outils par plateforme et renvoi vers les ressources de la CNIL."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "A se lit plus facilement grâce à ses étapes courtes et séquentielles, mais B est plus utile car il est plus complet et actionnable : il ajoute le choix par finalité, l'outil Cookieviz de la CNIL, l'auto-hébergement des Google Fonts, une checklist et un renvoi vers les ressources officielles."
+  }
+ ],
+ "infos": {
+  "infos_reference": 30,
+  "manquantes": [
+   "Le visiteur doit pouvoir choisir finalité par finalité (statistiques, publicité…) : la réponse demande seulement de décrire chaque finalité",
+   "La durée de vie maximale de 13 mois s'applique à tous les cookies déposés, pas seulement à ceux de mesure d'audience exemptée",
+   "Fermer le bandeau ne vaut pas consentement (la réponse ne cite que le défilement et le clic ailleurs)",
+   "Héberger les polices (Google Fonts) sur son propre serveur",
+   "Faire charger les vidéos et widgets de réseaux sociaux seulement après un clic, ou les éviter (flux Instagram/Facebook)",
+   "Ne demander dans le formulaire de contact que les données nécessaires (nom, email, message)",
+   "Outil Cookieviz de la CNIL et outil Webcookies pour l'inventaire",
+   "Extensions WordPress précises : Complianz, Real Cookie Banner, CookieYes ; autres solutions : Cookiebot, Iubenda",
+   "La CNIL contrôle surtout les gros sites mais peut agir sur plainte de particuliers ou de concurrents",
+   "Renvoyer vers les ressources officielles de la CNIL (cnil.fr, rubrique « Cookies et traceurs »)"
+  ],
+  "en_plus": [
+   "Les 5 conditions de l'exemption pour la mesure d'audience : usage exclusif à la mesure d'audience, pas de suivi sur d'autres sites, pas de transmission à un tiers, cookie de 13 mois maximum, données conservées 25 mois maximum",
+   "Google Analytics ne figure pas dans la liste d'exemption de la CNIL",
+   "Procédure détaillée pour lister les cookies : F12 dans Chrome, onglet Application puis Cookies, noter le nom et l'origine",
+   "Outil CookieMetrics pour scanner les cookies",
+   "Hotjar cité comme outil soumis à consentement",
+   "Klaro (gratuit) comme solution de bandeau ; Jimdo cité parmi les outils de création",
+   "Boutons Accepter et Refuser de même taille et de même couleur",
+   "Le retrait du consentement doit être aussi facile que son octroi",
+   "La politique de cookies doit être accessible depuis le bandeau et le pied de page, et indiquer le moyen de refuser ou de retirer son accord",
+   "Indiquer une adresse e-mail pour exercer les droits d'accès, de rectification et de suppression",
+   "Refaire le test après chaque modification du site",
+   "Ne pas copier le bandeau d'un autre site sans vérifier ses propres cookies",
+   "Corriger rapidement en cas de mise en demeure"
+  ]
+ }
+}

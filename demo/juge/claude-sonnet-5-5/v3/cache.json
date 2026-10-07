@@ -1,0 +1,43 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "B est plus direct et linéaire, avec un exemple chiffré exact qui rend le gain concret, tandis que A, plus long et parfois technique (localité spatiale, caches L1/L2/L3), offre une vision plus complète grâce à une analogie parlante, plusieurs raisons de l'accélération, des exemples concrets à chaque niveau et les principales limites."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "avec",
+   "utilite": "sans",
+   "raison": "A est plus concise et linéaire, avec un exemple chiffré exact qui rend le gain très concret, tandis que B, un peu plus long mais aidé par une analogie, couvre davantage d'aspects utiles : les différents niveaux de cache, la localité, la taille limitée avec l'éviction LRU et les outils courants."
+  }
+ ],
+ "infos": {
+  "infos_reference": 12,
+  "manquantes": [
+   "Analogie du sel gardé sur le plan de travail plutôt qu'à la cave (source lente vs cache rapide)",
+   "Le cache évite aussi de refaire des calculs coûteux, pas seulement des lectures de données",
+   "Principe de localité temporelle et spatiale exploité par le cache",
+   "Exemples de caches à différents niveaux : caches processeur L1/L2/L3, cache navigateur, CDN, Redis/Memcached, cache disque du système d'exploitation",
+   "Taille limitée du cache et politique d'éviction (ex. LRU)",
+   "Complexité de l'invalidation de cache (citation sur les deux choses difficiles en informatique)",
+   "Compromis : le cache consomme de la mémoire supplémentaire"
+  ],
+  "en_plus": [
+   "Ordres de grandeur chiffrés : environ 100 ns pour une lecture en mémoire du processus contre 1 à 10 ms pour une requête SQL via le réseau",
+   "Exemple chiffré : la première visite coûte 21 ms (requête plus écriture dans le cache), les suivantes 1 ms",
+   "Calcul du temps moyen : avec 95 % de hits, environ 2 ms au lieu de 20 ms, et 20 fois moins de requêtes vers la base",
+   "Le miss a un léger surcoût dû à l'écriture dans le cache",
+   "Exemple concret de TTL (60 s)",
+   "Invalidation déclenchée au moment où l'application modifie la source",
+   "Compromis du TTL : un TTL court réduit le risque de donnée périmée mais diminue le taux de hits, à choisir selon la tolérance de l'application"
+  ]
+ }
+}

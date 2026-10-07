@@ -1,0 +1,41 @@
+{
+ "duels": [
+  {
+   "ordre": [
+    "sans",
+    "avec"
+   ],
+   "clarte": "sans",
+   "utilite": "avec",
+   "raison": "A est plus accessible à un débutant grâce à l'analogie de l'annuaire, au schéma visuel et à des explications plus pédagogiques (lecture du nom de droite à gauche), tandis que B, exact et linéaire mais plus sec, apporte davantage d'informations concrètes et actionnables : exemple chiffré de TTL, bascule sur TCP, ordres de grandeur des temps de résolution et commande `dig +trace` pour observer chaque étape soi-même."
+  },
+  {
+   "ordre": [
+    "avec",
+    "sans"
+   ],
+   "clarte": "sans",
+   "utilite": "avec",
+   "raison": "B est plus pédagogique pour un néophyte grâce à l'analogie de l'annuaire, au schéma et à la lecture hiérarchique du nom de droite à gauche, tandis que A, en plus d'être exact, apporte davantage d'éléments concrets et actionnables : bascule UDP/TCP, exemple chiffré de TTL, ordres de grandeur de durée et commande `dig +trace` pour observer soi-même chaque étape."
+  }
+ ],
+ "infos": {
+  "infos_reference": 19,
+  "manquantes": [
+   "Le nom de domaine se lit de droite à gauche, en descendant la hiérarchie",
+   "Il existe 13 groupes de serveurs racine dans le monde",
+   "Le DNS est un système hiérarchique et distribué : aucun serveur ne connaît tout",
+   "Quad9 cité comme exemple de résolveur public",
+   "Mention de DNSSEC (sécurité du DNS)",
+   "Mention de la commande nslookup"
+  ],
+  "en_plus": [
+   "Le TTL est exprimé en secondes (exemple : un TTL de 300 = 5 minutes)",
+   "Compromis du TTL : un TTL court propage plus vite un changement, un TTL long réduit le nombre de requêtes",
+   "Le DNS bascule sur TCP si la réponse est trop grande",
+   "Ordres de grandeur : moins de 1 ms en cache, 20 à 100 ms pour une résolution complète",
+   "Commande précise dig +trace pour afficher chaque étape (racine, TLD, serveur faisant autorité)",
+   "DoT/DoH chiffrent spécifiquement le trajet entre l'appareil et le résolveur"
+  ]
+ }
+}

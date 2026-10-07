@@ -2629,12 +2629,12 @@ details ul { margin: 6px 0 0; padding-left: 1.2em; font-size: 13.5px; color: var
   svg += `<text class="titre-axe" x="${sx(50)}" y="${H - 6}" text-anchor="middle">plus claire que sans règle (%)</text>`;
   svg += `<text class="titre-axe" transform="translate(12 ${sy(50)}) rotate(-90)" text-anchor="middle">plus utile que sans règle (%)</text>`;
   // Étiquettes directes : décalage choisi pour rester dans le cadre.
-  const decal = { "v1-expliquer": [10, -10, "start"], "v1-faire": [-12, -12, "end"], "v2-expliquer": [12, 4, "start"],
-                  "v2-faire": [12, 16, "start"], "v3-expliquer": [-12, -12, "end"], "v3-faire": [-12, -12, "end"] };
+  const decal = { "v1-expliquer": [10, -10, "start"], "v1-faire": [-12, 5, "end"], "v2-expliquer": [12, 4, "start"],
+                  "v2-faire": [12, 16, "start"], "v3-expliquer": [-6, -58, "end"], "v3-faire": [-12, -12, "end"] };
   pts.forEach((p, i) => {
     const [dx, dy, ta] = decal[`${p.k}-${p.grp}`];
     svg += `<g class="point" tabindex="0" data-i="${i}">
-      <circle cx="${sx(p.x)}" cy="${sy(p.y)}" r="16" fill="transparent"/>${forme(p, 7)}
+      <circle cx="${sx(p.x)}" cy="${sy(p.y)}" r="16" fill="transparent"/>${dy < -40 ? `<line x1="${sx(p.x)}" y1="${sy(p.y) - 9}" x2="${sx(p.x)}" y2="${sy(p.y) + dy + 4}" stroke="var(--encre-3)" stroke-width="1"/>` : ""}${forme(p, 7)}
       <text class="etiquette" x="${sx(p.x) + dx}" y="${sy(p.y) + dy}" text-anchor="${ta}">${p.k} · ${p.grp}</text></g>`;
   });
   svg += `</svg>`;
